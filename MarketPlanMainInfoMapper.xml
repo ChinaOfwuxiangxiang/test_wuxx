@@ -1,0 +1,2100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qm.db.member.dao.market.MarketPlanMainInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="com.qm.db.member.pojo.market.MarketPlanMainInfoBean">
+		<id column="F_MARKET_ID" property="fMarketId" jdbcType="BIGINT" />
+		<result column="F_MARKET_NAME" property="fMarketName" jdbcType="VARCHAR" />
+		<result column="F_MARKET_TYPE_ID" property="fMarketTypeId" jdbcType="BIGINT" />
+		<result column="F_MERCHANT_ID" property="fMerchantId" jdbcType="VARCHAR" />
+		<result column="F_STATE" property="fState" jdbcType="CHAR" />
+		<result column="F_MODIFIER" property="fModifier" jdbcType="VARCHAR" />
+		<result column="F_CREATE_TIME" property="fCreateTime" jdbcType="VARCHAR" />
+		<result column="F_IS_SMS" property="fIsSms" jdbcType="CHAR" />
+		<result column="F_IS_NOTICE" property="fIsNotice" jdbcType="CHAR" />
+		<result column="F_SMS_CONTENT" property="fSmsContent" jdbcType="VARCHAR" />
+		<result column="F_NOTICE_CONTENT" property="fNoticeContent" jdbcType="VARCHAR" />
+		<result column="F_IS_WECHAT" property="fIsWechat" jdbcType="VARCHAR" />
+		<result column="F_WECHAT_CONTENT" property="fWechatContent" jdbcType="VARCHAR" />
+		<result column="F_EXECUTE_STATE" property="fExecuteState" jdbcType="CHAR" />
+		<result column="F_EXECUTE_TIME" property="fExecuteTime" jdbcType="VARCHAR" />
+		<result column="F_EFFECT_DATE" property="fEffectDate" jdbcType="VARCHAR" />
+		<result column="F_MODIFED_TIME" property="fModifedTime" jdbcType="VARCHAR" />
+		<result column="F_CONDITION_ID" property="fConditionId" jdbcType="BIGINT" />
+		<result column="F_CONDITION_NAME" property="fConditionName" jdbcType="VARCHAR" />
+		<result column="F_TYPE" property="fConditionType" jdbcType="VARCHAR" />
+		<result column="F_EXECUTE_COUNT" property="fExecuteCount" jdbcType="VARCHAR" />
+		<result column="F_TYPE_NAME" property="fTypeName" jdbcType="VARCHAR" />
+		<result column="F_REWARD_VALUE" property="fRewardValue" jdbcType="BIGINT" />
+		<result column="market_people" property="marketPeople" jdbcType="BIGINT" />
+		<result column="F_EXPIRE_DATE" property="fExpireDate" jdbcType="BIGINT" />
+		<result column="F_BIRTH_DATE" property="fBirthDate" jdbcType="VARCHAR" />
+		<result column="F_REDPAPER_WISHING" property="fRedPaperWishing" jdbcType="VARCHAR" />
+		<result column="F_REDPAPER_ACTIVITY_NAME" property="fRedPaperActivityName" jdbcType="VARCHAR" />
+		<result column="F_REDPAPER_REMARK" property="fRedPaperRemark" jdbcType="VARCHAR" />
+		<result column="F_REDPAPER_SEND_NAME" property="fRedPaperSendName" jdbcType="VARCHAR" />
+	    <result column="F_SHOP_USER_DIVIDE" property="fShopUserDivide" jdbcType="DECIMAL" />
+	    <result column="F_ACTIVITY_CODE" property="fActivityCode"/>
+	    <result column="F_GROUP_CODE" property="fGroupCode"/>
+	    <result property="rewardType" column="F_REWARD_TYPE"  jdbcType="INTEGER"/>
+	    <result column="F_GOODS_NUM" property="fGoodsNum" jdbcType="VARCHAR" />
+	    <result column="f_goods_count" property="fGoodsCount" jdbcType="BIGINT" />
+	    <result column="f_goods_sum_amount" property="fGoodsSumAmount" jdbcType="BIGINT" />
+		<result column="F_ASSISTANT" property="fAssistant" jdbcType="VARCHAR" />
+		<result column="F_NUMBEROFPEOPLE" property="numberOfPeople" jdbcType="VARCHAR" />
+		<result column="F_EVERPEOPLENUMBER" property="everPeopleNumber" jdbcType="VARCHAR" />
+		<result column="F_CONSUMPTION_CODITION_RULE" property="fConsumptionCoditionRule" jdbcType="VARCHAR" />
+		<result column="F_LOWEST_FEE" property="fLowestFee" jdbcType="BIGINT" />
+		
+	</resultMap>
+	
+    <resultMap id="BaseResultSubMap"
+		type="com.qm.db.member.pojo.market.MarketPlanSubInfoBean">
+		<id column="F_MARKET_SUB_ID" property="fMarketSubId" jdbcType="BIGINT" />
+		 <result column="F_MARKET_MAIN_ID" property="fMarketMainId" jdbcType="BIGINT" />
+	    <result column="F_REWARD_TYPE" property="fRewardType" jdbcType="CHAR" />
+	    <result column="F_REWARD_VALUE" property="fRewardValue" jdbcType="VARCHAR" />
+	    <result column="F_NUM" property="fNum" jdbcType="INTEGER" />
+	    <result column="F_NAME" property="fName" jdbcType="VARCHAR" />
+	    <result column="F_ENDTIME" property="fEndTime" jdbcType="VARCHAR" />
+	    <result column="F_TYPE" property="fType" jdbcType="VARCHAR" />
+	</resultMap>
+	
+		<!-- 营销执行日志 -->
+	<resultMap id="MarketPlanExecLogResultMap" type="com.qm.db.member.pojo.market.MarketPlanExecLogBean">
+		<result column="F_MARKET_PLAN_EXECUTE_ID" property="fMarketPlanExecuteId" jdbcType="BIGINT" />
+		<result column="F_MARKET_MAIN_ID" property="fMarketMainId" jdbcType="BIGINT" />
+		<result column="F_MARKET_NAME" property="fMarketName" jdbcType="VARCHAR" />
+		<result column="F_MARKET_TYPE_ID" property="fMarketTypeId" jdbcType="BIGINT" />
+		<result column="F_MARKET_TYPE_NAME" property="fMarketTypeName" jdbcType="VARCHAR" />
+		<result column="F_OPER_TIME" property="fOperTime" jdbcType="VARCHAR" />
+		<!-- 营销的执行时间 -->
+		<result column="F_MARKET_MODIFY_DATE" property="fMarketExEcuteDate" jdbcType="VARCHAR" />
+		<result column="F_RESULT" property="fResult" jdbcType="CHAR" />
+		<result column="FAILED_COUNT" property="failedCount"  />
+		<result column="EXECUTE_COUNT" property="executeCount"  />
+		<result column="F_MARKET_COUNT" property="allCount"  />
+		<result column="F_STATE" property="fState"  jdbcType="CHAR"/>
+		<result column="F_MARKET_STATE" property="fMarketState"  jdbcType="CHAR"/>
+	</resultMap>
+	
+	
+    <resultMap id="BaseMemberResultMap" type="com.qm.db.member.pojo.market.CusInfoBean">
+		<result column="F_CUS_CODE" property="fCusCode" jdbcType="VARCHAR" />
+	    <result column="F_CUS_NAME" property="fCusName" jdbcType="VARCHAR" />
+	    <result column="F_NICKNAME" property="fNickname" jdbcType="VARCHAR" />
+	    <result column="F_GENDER" property="fGender" jdbcType="INTEGER" />
+	    <result column="F_BIRTHDAY" property="fBirthday" jdbcType="VARCHAR" />
+	    <result column="F_PHONE" property="fPhone" jdbcType="VARCHAR" />
+	    <result column="F_TEL" property="fTel" jdbcType="VARCHAR" />
+	    <result column="F_SOURCE_ID" property="fSourceId" jdbcType="INTEGER" />
+	    <result column="F_LOGIN_PWD" property="fLoginPwd" jdbcType="VARCHAR" />
+	    <result column="F_PAY_PWD" property="fPayPwd" jdbcType="VARCHAR" />
+	    <result column="F_ID_TYPE" property="fIdType" jdbcType="INTEGER" />
+	    <result column="F_ID_NUM" property="fIdNum" jdbcType="VARCHAR" />
+	    <result column="F_EDUCATION_ID" property="fEducationId" jdbcType="INTEGER" />
+	    <result column="F_PROVINCE_ID" property="fProvinceId" jdbcType="VARCHAR" />
+	    <result column="F_CITY_ID" property="fCityId" jdbcType="VARCHAR" />
+	    <result column="F_AREA_ID" property="fAreaId" jdbcType="VARCHAR" />
+	    <result column="F_ADDRESS" property="fAddress" jdbcType="VARCHAR" />
+	    <result column="F_AVATAR_ADDR" property="fAvatarAddr" jdbcType="VARCHAR" />
+	    <result column="F_MER_NAME" property="fCusMerName" jdbcType="VARCHAR" />
+	    <result column="F_SHOP_NAME" jdbcType="VARCHAR" property="fRegisterShop" />
+	    <result column="F_REGISTER_SHOP" jdbcType="VARCHAR" property="fRegisterShopId" />
+	    
+	    <!-- 成长值 -->
+	    <result column="F_UP_HP" property="fUpHp" jdbcType="BIGINT" />
+	    <result column="F_CUS_INTEGRAL" property="fCusIntegral" jdbcType="BIGINT" />
+	    <result column="F_CUS_MER_REL" property="fCusMerRel" jdbcType="VARCHAR" />
+	    <result column="F_CUS_MAIL" property="fCusMail" jdbcType="VARCHAR" />
+	    <result column="F_CUS_GRADE_REL" property="fCusGradeRel" jdbcType="VARCHAR" />
+	    <result column="F_CREATETIME" property="fCreatetime" jdbcType="VARCHAR" />
+	    <result column="F_OPER_ID" property="fOperId" jdbcType="VARCHAR" />
+	    <result column="F_STATE" property="fState" jdbcType="INTEGER" />
+	    <result column="F_TERMINAL_ID" property="fTerminalId" jdbcType="VARCHAR" />
+		<result column="F_GRADE_NAME" property="fGradeName" jdbcType="VARCHAR" />
+		<result column="F_COMMENT" jdbcType="LONGVARCHAR" property="fComment" />
+		<result column="F_MEMBER_QR_CODE" jdbcType="VARCHAR" property="fMemberQRCode" />
+		
+		<!-- 会员日扩展字段 -->
+		<result column="CUS_ATTR_DATE_1" jdbcType="VARCHAR" property="cusAttrDate1"/>
+		<result column="CUS_ATTR_DATE_2" jdbcType="VARCHAR" property="cusAttrDate2"/>
+		<result column="CUS_ATTR_DATE_3" jdbcType="VARCHAR" property="cusAttrDate3"/>
+		<result column="CUS_ATTR_DATE_4" jdbcType="VARCHAR" property="cusAttrDate4"/>
+		<result column="CUS_ATTR_DATE_5" jdbcType="VARCHAR" property="cusAttrDate5"/>
+	</resultMap>
+	
+<resultMap id="BaseResult_MRCNRR_Map" type="com.qm.db.member.pojo.market.MarketRegistCusNotReardRelInfo" >
+    <id column="F_MARKET_ID" property="fMarketId" jdbcType="BIGINT" />
+    <id column="F_CUS_CODE" property="fCusCode" jdbcType="VARCHAR" />
+    <result column="F_ORG_ID" property="fOrgId" jdbcType="VARCHAR" />
+    <result column="F_STATE" property="fState" jdbcType="BIGINT" />
+    <result column="F_CREATE_TIME" property="fCreateTime" jdbcType="VARCHAR" />
+    <result column="F_TYPE" property="fType" jdbcType="INTEGER" />
+    <result column="F_FIRST_ORDER_NUM" property="fFirstOrderNum" jdbcType="VARCHAR" />
+    <result column="F_REWARD_TIME" property="fRewardTime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  	<resultMap id="BaseResult2ShopUserMap" type="com.qm.db.member.pojo.shopUserLoyalty.ShopUserPlanMainInfo">
+		<result property="fId" column="F_ID" jdbcType="VARCHAR"/>
+		<result property="fName" column="F_NAME" jdbcType="VARCHAR"/>
+		<result property="fPlanType" column="F_PLAN_TYPE" jdbcType="INTEGER"/>
+		<result property="fRewardType" column="F_REWARD_TYPE" jdbcType="VARCHAR"/>
+		<result property="fEffectiveType" column="F_EFFECTIVE_TYPE" jdbcType="VARCHAR"/>
+		<result property="fTimeType" column="F_TIME_TYPE" jdbcType="VARCHAR"/>
+		<result property="fBeginTime" column="F_BEGIN_TIME" jdbcType="VARCHAR"/>
+		<result property="fEndTime" column="F_END_TIME" jdbcType="VARCHAR"/>
+		<result property="fShopRule" column="F_SHOP_RULE" jdbcType="VARCHAR"/>
+		<result property="fState" column="F_STATE" jdbcType="VARCHAR"/>
+		<result property="fOperCode" column="F_OPER_CODE" jdbcType="VARCHAR"/>
+		<result property="fOperName" column="F_OPER_NAME" jdbcType="VARCHAR"/>
+		<result property="fOperTime" column="F_OPER_TIME" jdbcType="VARCHAR"/>
+		<result property="fMarketPlanId" column="F_MARKET_PLAN_ID" jdbcType="INTEGER"/>
+		<result property="fRemark" column="F_REMARK" jdbcType="VARCHAR"/>
+		<result property="fRewardValue" column="F_REWARD_VALUE" jdbcType="INTEGER"/>
+		<result property="fUserPer" column="F_USER_PER" jdbcType="INTEGER"/>
+		<result property="fPlanTypeName" column="F_PLAN_TYPE_NAME" jdbcType="VARCHAR"/>
+		<result property="fStatisticalType" column="F_STATISTICAL_TYPE" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+  <!-- 营业员单笔营销查询返回值 -->
+ <resultMap type="com.qm.db.member.pojo.market.SingleMarketingInfo2ShopUserBean" id="SingerMarktingPlanGoods2ShopUserMap">
+ 	<result property="fMarketMainId" column="F_MARKET_ID" javaType="java.lang.Long" jdbcType="BIGINT"/>
+	<result property="marketingTypeId" column="F_MARKET_TYPE_ID" javaType="java.lang.Long" jdbcType="BIGINT"/>
+	<result property="fMarketName" column="F_MARKET_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+	<result property="fTypeName" column="F_TYPE_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+	<result property="fIsNotice" column="F_IS_NOTICE" javaType="java.lang.String" jdbcType="CHAR"/>
+	<result property="fIsSms" column="F_IS_SMS" javaType="java.lang.String" jdbcType="CHAR"/>
+	<result property="fNoticeConetent" column="F_NOTICE_CONTENT" javaType="java.lang.String" />
+	<result property="fSmsContent" column="F_SMS_CONTENT" javaType="java.lang.String" />
+	<result property="fGoodsNum" column="F_GOODS_NUM" javaType="java.lang.String"  jdbcType="VARCHAR"/>
+	<result property="fUseType" column="F_USE_TYPE"  />
+	<result property="fGoodPrice" column="F_GOODS_SUM_AMOUNT" />
+	<result property="fFee" column="F_LOWEST_FEE"  jdbcType="BIGINT"/>
+	<result property="rewardType" column="F_REWARD_TYPE"  jdbcType="INTEGER"/>
+    <result property="fAssistAnt" column="F_ASSISTANT"  jdbcType="INTEGER"/>
+    <result column="F_NUMBEROFPEOPLE" property="numberOfPeople" jdbcType="VARCHAR" />
+	<result column="F_EVERPEOPLENUMBER" property="everPeopleNumber" jdbcType="VARCHAR" />
+    <result column="F_ID" property="fId" jdbcType="VARCHAR" />
+ </resultMap>
+ 
+  <resultMap type="com.qm.db.member.pojo.shopUserLoyalty.PosGoodsOfPercentageMarketing2ShopUserBean" 
+             id="PosGoodsOfPercentage2ShopUserMap">
+	    <result property="fAssistAnt" column="F_ASSISTANT" jdbcType="VARCHAR"/>
+		<result property="fPlanId" column="F_ID" jdbcType="VARCHAR"/>
+		<result property="fIsMultiple" column="F_IS_MULTIPLE" jdbcType="VARCHAR"/>
+		<result property="lowFee" column="F_LOWEST_FEE" jdbcType="VARCHAR"/>
+		<result property="allAmount" column="F_GOODS_SUM" jdbcType="VARCHAR"/>
+		<result property="fStatisticalType" column="F_STATISTICAL_TYPE" jdbcType="VARCHAR"/>
+		<result property="fPlanFullType" column="F_PLAN_FULL_TYPE" jdbcType="VARCHAR"/>
+		<result property="fGoodsNum" column="F_GOODS_NUM" jdbcType="VARCHAR"/>
+		<result property="goodsSumAmount" column="F_GOODS_SUM_AMOUNT" jdbcType="VARCHAR"/>
+ </resultMap>
+ 
+ <resultMap type="com.qm.db.member.pojo.market.MarketLevelInfoBean" id="LevelMap">
+     <result property="fLevelId" column="F_LEVEL_ID" jdbcType="VARCHAR"/>
+     <result property="fLowestFee" column="F_LOWEST_FEE" jdbcType="BIGINT"/>
+ </resultMap>
+ 
+ 
+ <!-- 营业员套餐售卖奖励返回值 -->
+ <resultMap type="com.qm.db.member.pojo.market.PackageShareMarketingInfo2ShopUserBean" id="PackageShareMarketingInfo2ShopUserMap">
+ 	<result property="fMarketId" column="F_MARKET_ID" jdbcType="BIGINT"/>
+	<result property="fUserPlanId" column="F_USER_PLAN_ID" jdbcType="VARCHAR"/>
+	<result property="fGoodsNum" column="F_GOODS_NUM" jdbcType="VARCHAR"/>
+	<result property="fLowestFee" column="F_LOWEST_FEE"  jdbcType="BIGINT"/>
+	<result property="fGoodsCount" column="F_GOODS_COUNT"  jdbcType="BIGINT"/>
+	<result property="fRewardType" column="F_REWARD_TYPE"  jdbcType="VARCHAR"/>
+	<result property="fRewardValue" column="F_REWARD_VALUE"  jdbcType="BIGINT"/>
+	<result property="fUserPer" column="F_USER_PER"  jdbcType="BIGINT"/>
+    <result property="fAssistant" column="F_ASSISTANT"  jdbcType="VARCHAR"/>
+ </resultMap>
+ 
+	
+ <sql id="Base_Column_List">
+		t1.F_CUS_CODE, F_CUS_NAME, F_NICKNAME,
+		F_GENDER, F_BIRTHDAY,
+		F_PHONE,
+		F_TEL, F_SOURCE_ID, F_LOGIN_PWD,
+		F_PAY_PWD, F_ID_TYPE, F_ID_NUM,
+		F_EDUCATION_ID,
+		F_PROVINCE_ID,
+		F_CITY_ID, F_AREA_ID, F_ADDRESS, F_CUS_INTEGRAL, F_CUS_MER_REL,
+		F_CUS_MAIL,
+		F_CUS_GRADE_REL, F_CREATETIME, F_OPER_ID,F_STATE,
+		F_TERMINAL_ID,F_COMMENT,F_AVATAR_ADDR,F_UP_HP
+	</sql>
+	
+    <select resultMap="BaseMemberResultMap" id="queryMemberInfoListForBirthMarket" parameterType="Map">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			T_CUS_INFO T1
+		<if test="fBirthDate != 'F_BIRTHDAY'">
+ 			LEFT JOIN t_cus_nature_option_info t2 ON t1.F_CUS_CODE = t2.F_CUS_CODE
+			AND t2.F_NATURE_CODE = #{fBirthDate}
+  		</if>
+		WHERE
+			F_CUS_GRADE_REL
+			IN
+	    <foreach collection="levelRelList" index="index" open="(" close=")" item="item" separator=",">
+				#{item}
+		</foreach>
+		<if test="fBirthDate != 'F_BIRTHDAY'">
+ 			<!-- 判断生日特性生日是否满足生日营销 -->
+ 			AND SUBSTR(t2.F_NATURE_VALUE,5,4) = #{marketBirthNoYeal,jdbcType=VARCHAR}
+  		</if>
+  		<if test="fBirthDate == 'F_BIRTHDAY'">
+ 			<!-- 判断会员生日是否满足生日营销 -->
+ 			AND SUBSTR(t1.F_BIRTHDAY,5,4) = #{marketBirthNoYeal,jdbcType=VARCHAR}
+  		</if>
+		<if test="fState!=null and fState!=''">
+ 			AND F_STATE = #{fState}
+  		</if>
+  		<if test="fCusMerRel!=null and fCusMerRel!=''">
+ 			AND F_CUS_MER_REL = #{fCusMerRel}
+  		</if>		
+	</select>
+	
+    
+    <select id="querySubInforById" resultMap="BaseResultSubMap">
+		select a.*,b.F_NAME,b.F_ENDTIME,c.F_TYPE from t_market_plan_sub_info a  LEFT JOIN T_TICKET_TYPE_INFO b on a.F_REWARD_VALUE=b.F_ID 
+		LEFT JOIN  t_ticket_type_info c on a.F_REWARD_VALUE=c.F_ID
+		where a.F_MARKET_MAIN_ID=#{fMarketId}
+	</select>
+	
+	<select id="queryLevelRelList" parameterType="Map" resultType="String">
+		SELECT 
+			F_GRADE_ID
+		FROM 
+			T_MARKET_PLAN_GRADE_REF 
+		WHERE 
+			F_MARKET_ID = #{fMarketMainId}
+	</select>
+	
+    <select id="getMarketPlanMainInfo" resultMap="BaseResultMap">
+		SELECT 
+			T1.*,T3.F_FILTER_CONDITION_ID AS F_CONDITION_ID, T3.F_FILTER_CONDITION_NAME AS F_CONDITION_NAME,T2.F_TYPE AS F_TYPE
+		FROM 
+			T_MARKET_PLAN_MAIN_INFO T1
+			LEFT JOIN T_MARKET_CONDITION_REL T2 ON T1.F_MARKET_ID=T2.F_MARKET_ID 
+ 			LEFT JOIN T_FILTER_CONDITION T3 ON T2.F_CONDITION_ID=T3.F_FILTER_CONDITION_ID
+		WHERE 
+			T1.F_MERCHANT_ID=#{fMerchantId} 
+			AND T1.F_MARKET_ID=#{fMarketId}
+	</select>
+	
+    <select id="getPhyAxisMarketPlanCount" resultType="int">
+		SELECT count(1) from (
+		<if test="fMarketTypeId != '32'">
+			SELECT t1.F_MARKET_ID
+ 			FROM t_market_plan_main_info t1
+ 			LEFT JOIN t_market_condition_rel t2 on t1.F_MARKET_ID=t2.F_MARKET_ID 
+ 			LEFT JOIN t_filter_condition t3 on t2.F_CONDITION_ID=t3.F_FILTER_CONDITION_ID
+			where t1.F_MERCHANT_ID=#{fMerchantId}
+			<if test="startTime != null and startTime != ''">
+				and t1.F_EXECUTE_TIME &gt;= #{startTime}
+			</if>
+			<if test="endTime != null and endTime != ''">
+				and t1.F_EXECUTE_TIME &lt;= #{endTime}
+			</if>
+			<if test="fMarketTypeId != null and fMarketTypeId != ''">
+				and FIND_IN_SET(t1.F_MARKET_TYPE_ID,#{fMarketTypeId})
+			</if>
+			<if test="fMarketName != null and fMarketName != ''">
+				AND (t1.F_MARKET_NAME like CONCAT('%',#{fMarketName},'%') or  FIND_IN_SET(t1.F_MARKET_ID,#{fMarketName}))
+			</if>
+			<if test="fState != null and fState != ''">
+				AND t1.F_STATE = #{fState}
+			</if>
+			<if test="createStartDate != null and createStartDate != ''">
+				and t1.F_CREATE_TIME &gt;= #{createStartDate}
+			</if>
+			<if test="createEndDate != null and createEndDate != ''">
+				and t1.F_CREATE_TIME &lt;= #{createEndDate}
+			</if>
+			<if test="conditionId != null and conditionId != ''">
+				and t2.F_CONDITION_ID = #{conditionId}
+			</if>
+		</if>
+		<if test="flag == 'tj'">
+			UNION
+		</if>
+		<if test="flag == 'tj' or fMarketTypeId == '32'">
+				SELECT t1.F_MARKET_ID
+	 			FROM t_market_plan_main_info t1
+	 			LEFT JOIN t_market_condition_rel t2 on t1.F_MARKET_ID=t2.F_MARKET_ID 
+	 			LEFT JOIN t_tj_activity_info t3 on t2.F_CONDITION_ID=t3.F_ACTIVITY_ID
+				where t1.F_MERCHANT_ID=#{fMerchantId}
+			<if test="startTime != null and startTime != ''">
+				and t1.F_EXECUTE_TIME &gt;= #{startTime}
+			</if>
+			<if test="endTime != null and endTime != ''">
+				and t1.F_EXECUTE_TIME &lt;= #{endTime}
+			</if>
+			<if test="fMarketTypeId != null and fMarketTypeId != ''">
+				and FIND_IN_SET(t1.F_MARKET_TYPE_ID,'32')
+			</if>
+			<if test="fMarketName != null and fMarketName != ''">
+				AND (t1.F_MARKET_NAME like CONCAT('%',#{fMarketName},'%') or  FIND_IN_SET(t1.F_MARKET_ID,#{fMarketName}))
+			</if>
+			<if test="fState != null and fState != ''">
+				AND t1.F_STATE = #{fState}
+			</if>
+			<if test="createStartDate != null and createStartDate != ''">
+				and t1.F_CREATE_TIME &gt;= #{createStartDate}
+			</if>
+			<if test="createEndDate != null and createEndDate != ''">
+				and t1.F_CREATE_TIME &lt;= #{createEndDate}
+			</if>
+			<if test="conditionId != null and conditionId != ''">
+				and t2.F_CONDITION_ID = #{conditionId}
+			</if>
+		</if>
+		) t
+	</select>
+	
+    <select id="queryPhyAxisMarketPlanMainInfo" resultMap="BaseResultMap">
+    SELECT * FROM (
+    	SELECT * FROM (
+		<if test="fMarketTypeId != '32'">
+			SELECT DISTINCT t1.F_MARKET_ID, t1.F_MARKET_NAME, t1.F_MARKET_TYPE_ID, t1.F_CREATE_TIME,
+				t1.F_EXECUTE_STATE, t1.F_EXECUTE_TIME, t1.F_IS_NOTICE, t1.F_IS_SMS, t1.F_MERCHANT_ID,
+				t1.F_MODIFIER, t1.F_NOTICE_CONTENT, t1.F_SMS_CONTENT, t1.F_STATE, t1.F_IS_WECHAT, t1.F_WECHAT_CONTENT,
+				t3.F_FILTER_CONDITION_ID as F_CONDITION_ID, t3.F_FILTER_CONDITION_NAME as F_CONDITION_NAME
+	 			FROM t_market_plan_main_info t1
+	 			LEFT JOIN t_market_condition_rel t2 on t1.F_MARKET_ID=t2.F_MARKET_ID 
+	 			LEFT JOIN t_filter_condition t3 on t2.F_CONDITION_ID=t3.F_FILTER_CONDITION_ID
+				where t1.F_MERCHANT_ID=#{fMerchantId}
+			<if test="startTime != null and startTime != ''">
+				and t1.F_EXECUTE_TIME &gt;= #{startTime}
+			</if>
+			<if test="endTime != null and endTime != ''">
+				and t1.F_EXECUTE_TIME &lt;= #{endTime}
+			</if>
+			<if test="fMarketTypeId != null and fMarketTypeId != ''">
+				and FIND_IN_SET(t1.F_MARKET_TYPE_ID,#{fMarketTypeId})
+			</if>
+			<if test="fMarketName != null and fMarketName != ''">
+				AND (t1.F_MARKET_NAME like CONCAT('%',#{fMarketName},'%') or  FIND_IN_SET(t1.F_MARKET_ID,#{fMarketName}))
+			</if>
+			<if test="fState != null and fState != ''">
+				AND t1.F_STATE = #{fState}
+			</if>
+			<if test="createStartDate != null and createStartDate != ''">
+				and t1.F_CREATE_TIME &gt;= #{createStartDate}
+			</if>
+			<if test="createEndDate != null and createEndDate != ''">
+				and t1.F_CREATE_TIME &lt;= #{createEndDate}
+			</if>
+			<if test="conditionId != null and conditionId != ''">
+				and t2.F_CONDITION_ID = #{conditionId}
+			</if>
+<!-- 			ORDER BY t1.F_CREATE_TIME DESC -->
+		</if>
+		<if test="flag == 'tj'">
+			UNION
+		</if>
+		<if test="flag == 'tj' or fMarketTypeId == '32'">
+			SELECT DISTINCT t1.F_MARKET_ID, t1.F_MARKET_NAME, t1.F_MARKET_TYPE_ID, t1.F_CREATE_TIME,
+				t1.F_EXECUTE_STATE, t1.F_EXECUTE_TIME, t1.F_IS_NOTICE, t1.F_IS_SMS, t1.F_MERCHANT_ID,
+				t1.F_MODIFIER, t1.F_NOTICE_CONTENT, t1.F_SMS_CONTENT, t1.F_STATE, t1.F_IS_WECHAT, t1.F_WECHAT_CONTENT,
+				t3.F_ACTIVITY_ID as F_CONDITION_ID, t3.F_ACTIVITY_NAME as F_CONDITION_NAME
+	 			FROM t_market_plan_main_info t1
+	 			LEFT JOIN t_market_condition_rel t2 on t1.F_MARKET_ID=t2.F_MARKET_ID 
+	 			LEFT JOIN t_tj_activity_info t3 on t2.F_CONDITION_ID=t3.F_ACTIVITY_ID
+				where t1.F_MERCHANT_ID=#{fMerchantId}
+				and FIND_IN_SET(t1.F_MARKET_TYPE_ID,'32')
+			<if test="startTime != null and startTime != ''">
+				and t1.F_EXECUTE_TIME &gt;= #{startTime}
+			</if>
+			<if test="endTime != null and endTime != ''">
+				and t1.F_EXECUTE_TIME &lt;= #{endTime}
+			</if>
+			<if test="fMarketName != null and fMarketName != ''">
+				AND (t1.F_MARKET_NAME like CONCAT('%',#{fMarketName},'%') or  FIND_IN_SET(t1.F_MARKET_ID,#{fMarketName}))
+			</if>
+			<if test="fState != null and fState != ''">
+				AND t1.F_STATE = #{fState}
+			</if>
+			<if test="createStartDate != null and createStartDate != ''">
+				and t1.F_CREATE_TIME &gt;= #{createStartDate}
+			</if>
+			<if test="createEndDate != null and createEndDate != ''">
+				and t1.F_CREATE_TIME &lt;= #{createEndDate}
+			</if>
+			<if test="conditionId != null and conditionId != ''">
+				and t2.F_CONDITION_ID = #{conditionId}
+			</if>
+		</if>
+		) t  ORDER BY t.F_CREATE_TIME DESC
+	 ) Z1 
+	 LEFT JOIN 
+	 (
+	    SELECT IFNULL(CASE WHEN t4.F_STATE = 2 THEN 0 ELSE COUNT(t4.F_MARKET_MAIN_ID) END ,0) AS F_EXECUTE_COUNT,t1.F_MARKET_ID FROM 
+	    t_market_plan_main_info t1 
+	    LEFT JOIN T_MARKET_PLAN_EXECUTE_INFO t4 ON t4.F_MARKET_MAIN_ID = t1.F_MARKET_ID
+	    where t1.F_MERCHANT_ID=#{fMerchantId}
+    	<if test="startTime != null and startTime != ''">
+			and t1.F_EXECUTE_TIME &gt;= #{startTime}
+		</if>
+		<if test="endTime != null and endTime != ''">
+			and t1.F_EXECUTE_TIME &lt;= #{endTime}
+		</if>
+		<if test="fMarketTypeId != null and fMarketTypeId != ''">
+			and FIND_IN_SET(t1.F_MARKET_TYPE_ID,#{fMarketTypeId})
+		</if>
+		<if test="fMarketName != null and fMarketName != ''">
+			AND (t1.F_MARKET_NAME like CONCAT('%',#{fMarketName},'%') or  FIND_IN_SET(t1.F_MARKET_ID,#{fMarketName}))
+		</if>
+		<if test="fState != null and fState != ''">
+			AND t1.F_STATE = #{fState}
+		</if>
+		<if test="createStartDate != null and createStartDate != ''">
+			and t1.F_CREATE_TIME &gt;= #{createStartDate}
+		</if>
+		<if test="createEndDate != null and createEndDate != ''">
+			and t1.F_CREATE_TIME &lt;= #{createEndDate}
+		</if>
+		GROUP BY t1.F_MARKET_ID 
+	 ) Z2
+	 ON Z1.F_MARKET_ID = Z2.F_MARKET_ID 
+	 <if test="start !=null and pageSize !=''">
+		LIMIT #{start}, #{pageSize}
+	 </if>
+	</select>
+	
+   <select id="queryPhyAxisMarketPlanMainInfoById" resultMap="BaseResultMap">
+		SELECT DISTINCT t1.F_MARKET_ID, t1.F_MARKET_NAME, t1.F_MARKET_TYPE_ID, t1.F_CREATE_TIME,
+			t1.F_EXECUTE_STATE, t1.F_EXECUTE_TIME, t1.F_IS_NOTICE, t1.F_IS_SMS, t1.F_MERCHANT_ID,
+			t1.F_MODIFIER, t1.F_NOTICE_CONTENT, t1.F_SMS_CONTENT, t1.F_STATE, t1.F_IS_WECHAT, t1.F_WECHAT_CONTENT,
+			t3.F_FILTER_CONDITION_ID as F_CONDITION_ID, t3.F_FILTER_CONDITION_NAME as F_CONDITION_NAME
+ 			FROM t_market_plan_main_info t1
+ 			LEFT JOIN t_market_condition_rel t2 on t1.F_MARKET_ID=t2.F_MARKET_ID 
+ 			LEFT JOIN t_filter_condition t3 on t2.F_CONDITION_ID=t3.F_FILTER_CONDITION_ID
+			where t1.F_MERCHANT_ID=#{fMerchantId}
+		<if test="startTime != null and startTime != ''">
+			and t1.F_EXECUTE_TIME &gt;= #{startTime}
+		</if>
+		<if test="endTime != null and endTime != ''">
+			and t1.F_EXECUTE_TIME &lt;= #{endTime}
+		</if>
+		<if test="fMarketTypeId != null and fMarketTypeId != ''">
+			and FIND_IN_SET(t1.F_MARKET_TYPE_ID,#{fMarketTypeId})
+		</if>
+		<if test="fMarketName != null and fMarketName != ''">
+			AND t1.F_MARKET_NAME like CONCAT('%',#{fMarketName},'%')
+		</if>
+		<if test="fState != null and fState != ''">
+			AND t1.F_STATE = #{fState}
+		</if>
+		<if test="createStartDate != null and createStartDate != ''">
+			and t1.F_CREATE_TIME &gt;= #{createStartDate}
+		</if>
+		<if test="createEndDate != null and createEndDate != ''">
+			and t1.F_CREATE_TIME &lt;= #{createEndDate}
+		</if>
+		<if test="conditionId != null and conditionId != ''">
+			and t2.F_CONDITION_ID = #{conditionId}
+		</if>
+		ORDER BY t1.F_EXECUTE_TIME DESC
+		LIMIT #{start} , #{pageSize}
+	</select>
+	
+	
+	
+	<insert id="addMarketPlanMainInfo" useGeneratedKeys="true" keyProperty="fMarketId" parameterType="com.qm.db.member.pojo.market.MarketPlanMainInfoBean">
+		INSERT INTO T_MARKET_PLAN_MAIN_INFO
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="fMarketId != null">
+				F_MARKET_ID,
+			</if>
+			<if test="fMarketName != null">
+				F_MARKET_NAME,
+			</if>
+			<if test="fMarketTypeId != null">
+				F_MARKET_TYPE_ID,
+			</if>
+			<if test="fMerchantId != null">
+				F_MERCHANT_ID,
+			</if>
+			<if test="fEffectDate != null">
+				F_EFFECT_DATE,
+			</if>
+			<if test="fExpireDate != null">
+				F_EXPIRE_DATE,
+			</if>
+			<if test="fState != null">
+				F_STATE,
+			</if>
+			<if test="fModifier != null">
+				F_MODIFIER,
+			</if>
+			<if test="fModifedTime != null">
+				F_MODIFED_TIME,
+			</if>
+			<if test="fIsSms != null">
+				F_IS_SMS,
+			</if>
+			<if test="fIsNotice != null">
+				F_IS_NOTICE,
+			</if>
+			<if test="fSmsContent != null">
+				F_SMS_CONTENT,
+			</if>
+			<if test="fNoticeContent != null">
+				F_NOTICE_CONTENT,
+			</if>
+			<if test="fLowestFee != null">
+				F_LOWEST_FEE,
+			</if>
+			<if test="fExecuteState != null">
+				F_EXECUTE_STATE,
+			</if>
+			<if test="fExecuteTime != null">
+				F_EXECUTE_TIME,
+			</if>
+			<if test="fCreateTime != null">
+				F_CREATE_TIME,
+			</if>
+			<if test="numberOfPeople != null">
+				F_NUMBEROFPEOPLE,
+			</if>
+			<if test="everPeopleNumber != null">
+				F_EVERPEOPLENUMBER,
+			</if>
+			<if test="rewardType != null">
+				F_REWARD_TYPE,
+			</if>
+			<if test="fIsWechat != null">
+				F_IS_WECHAT,
+			</if>
+			<if test="fWechatContent != null">
+				F_WECHAT_CONTENT,
+			</if>
+			<if test="useType != null">
+				F_USE_TYPE,
+			</if>
+			<if test="fShopRull != null">
+				F_SHOP_RULE,
+			</if>
+			<if test="fExclusivePrivilegeRule != null">
+				F_EXCLUSIVE_PRIVILEGE,
+			</if>
+			<if test="fRedpaperActivityName != null">
+				F_REDPAPER_ACTIVITY_NAME,
+			</if>
+			<if test="fRedpaperSendName != null">
+				F_REDPAPER_SEND_NAME,
+			</if>
+			<if test="fRedpaperRemark != null">
+				F_REDPAPER_REMARK,
+			</if>
+			<if test="fRedpaperWishing != null">
+				F_REDPAPER_WISHING,
+			</if>
+			<if test="fBirthDate != null">
+				F_BIRTH_DATE,
+			</if>
+			<!--对应的营销树级别编码-->
+			<if test="fJbNum != null">
+				F_MARKET_TREE_CODE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="fMarketId != null">
+				#{fMarketId,jdbcType=BIGINT},
+			</if>
+			<if test="fMarketName != null">
+				#{fMarketName,jdbcType=VARCHAR},
+			</if>
+			<if test="fMarketTypeId != null">
+				#{fMarketTypeId,jdbcType=BIGINT},
+			</if>
+			<if test="fMerchantId != null">
+				#{fMerchantId,jdbcType=VARCHAR},
+			</if>
+			<if test="fEffectDate != null">
+				#{fEffectDate,jdbcType=VARCHAR},
+			</if>
+			<if test="fExpireDate != null">
+				#{fExpireDate,jdbcType=VARCHAR},
+			</if>
+			<if test="fState != null">
+				#{fState,jdbcType=CHAR},
+			</if>
+			<if test="fModifier != null">
+				#{fModifier,jdbcType=VARCHAR},
+			</if>
+			<if test="fModifedTime != null">
+				#{fModifedTime,jdbcType=VARCHAR},
+			</if>
+			<if test="fIsSms != null">
+				#{fIsSms,jdbcType=CHAR},
+			</if>
+			<if test="fIsNotice != null">
+				#{fIsNotice,jdbcType=CHAR},
+			</if>
+			<if test="fSmsContent != null">
+				#{fSmsContent,jdbcType=VARCHAR},
+			</if>
+			<if test="fNoticeContent != null">
+				#{fNoticeContent,jdbcType=VARCHAR},
+			</if>
+			<if test="fLowestFee != null">
+				#{fLowestFee,jdbcType=VARCHAR},
+			</if>
+			<if test="fExecuteState != null">
+				#{fExecuteState,jdbcType=VARCHAR},
+			</if>
+			<if test="fExecuteTime != null">
+				#{fExecuteTime,jdbcType=VARCHAR},
+			</if>
+			<if test="fCreateTime != null">
+				#{fCreateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="numberOfPeople != null">
+				#{numberOfPeople,jdbcType=VARCHAR},
+			</if>
+			<if test="everPeopleNumber != null">
+				#{everPeopleNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="rewardType != null">
+				#{rewardType,jdbcType=INTEGER},
+			</if>
+			<if test="fIsWechat != null">
+				#{fIsWechat,jdbcType=VARCHAR},
+			</if>
+			<if test="fWechatContent != null">
+				#{fWechatContent,jdbcType=VARCHAR},
+			</if>
+            <if test="useType != null">
+           		 #{useType,jdbcType=VARCHAR},
+            </if>
+			<if test="fShopRull != null">
+				#{fShopRull,jdbcType=VARCHAR},
+			</if>
+            <if test="fExclusivePrivilegeRule != null">
+                #{fExclusivePrivilegeRule,jdbcType=VARCHAR},
+            </if>
+			<if test="fRedpaperActivityName != null">
+				#{fRedpaperActivityName,jdbcType=VARCHAR},
+			</if>
+			<if test="fRedpaperSendName != null">
+				#{fRedpaperSendName,jdbcType=VARCHAR},
+			</if>
+			<if test="fRedpaperRemark != null">
+				#{fRedpaperRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="fRedpaperWishing != null">
+				#{fRedpaperWishing,jdbcType=VARCHAR},
+			</if>
+			<if test="fBirthDate != null">
+				#{fBirthDate,jdbcType=VARCHAR},
+			</if>
+			<!--对应的营销树级别编码-->
+			<if test="fJbNum != null">
+				<choose>
+					<when test="fJbNum == 0">
+						#{fJbNum,jdbcType=VARCHAR}
+					</when>
+					<otherwise>
+						(SELECT F_ID  FROM T_MARKET_INFO_TREE WHERE F_JB_NUM = #{fJbNum}),
+					</otherwise>
+				</choose>
+			</if>
+		</trim>
+	</insert>
+	
+   <update id="editMarketPlanMainInfo">
+		 UPDATE T_MARKET_PLAN_MAIN_INFO
+    <set >
+      <if test="fIsSms != null" >
+        F_IS_SMS = #{fIsSms,jdbcType=CHAR},
+      </if>
+      <if test="fMarketName != null" >
+        F_MARKET_NAME = #{fMarketName,jdbcType=VARCHAR},
+      </if>
+      <if test="fMarketTypeId != null" >
+        F_MARKET_TYPE_ID = #{fMarketTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="fMerchantId != null" >
+        F_MERCHANT_ID = #{fMerchantId,jdbcType=VARCHAR},
+      </if>
+        F_EFFECT_DATE = #{fEffectDate,jdbcType=VARCHAR},
+        F_EXPIRE_DATE = #{fExpireDate,jdbcType=VARCHAR},
+        F_NUMBEROFPEOPLE = #{numberOfPeople,jdbcType=VARCHAR},
+        F_EVERPEOPLENUMBER = #{everPeopleNumber,jdbcType=VARCHAR},
+      <if test="fState != null" >
+        F_STATE = #{fState,jdbcType=CHAR},
+      </if>
+      <if test="fModifier != null" >
+        F_MODIFIER = #{fModifier,jdbcType=VARCHAR},
+      </if>
+      <if test="fModifedTime != null" >
+        F_MODIFED_TIME = #{fModifedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fLowestFee != null" >
+        F_LOWEST_FEE = #{fLowestFee,jdbcType=BIGINT},
+      </if>
+      <if test="fIsNotice != null" >
+        F_IS_NOTICE = #{fIsNotice,jdbcType=CHAR},
+      </if>
+      <if test="fNoticeContent != null" >
+        F_NOTICE_CONTENT = #{fNoticeContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fSmsContent != null" >
+        F_SMS_CONTENT = #{fSmsContent,jdbcType=LONGVARCHAR},
+      </if>
+       <if test="fIsWechat != null" >
+        F_IS_WECHAT = #{fIsWechat,jdbcType=CHAR},
+      </if>
+      <if test="fWechatContent != null" >
+        F_WECHAT_CONTENT = #{fWechatContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fExecuteTime != null" >
+        F_EXECUTE_TIME = #{fExecuteTime,jdbcType=VARCHAR},
+      </if>
+       <if test="rewardType != null" >
+        F_REWARD_TYPE = #{rewardType,jdbcType=INTEGER},
+      </if>
+      <if test="fShopRull != null" >
+        F_SHOP_RULE = #{fShopRull,jdbcType=INTEGER},
+      </if>
+      <if test="fUseTerminal != null" >
+        F_USE_TERMINAL = #{fUseTerminal,jdbcType=VARCHAR},
+      </if>
+      <if test="fRedpaperActivityName != null" >
+        F_REDPAPER_ACTIVITY_NAME = #{fRedpaperActivityName,jdbcType=VARCHAR},
+      </if>
+      <if test="fRedpaperSendName != null" >
+        F_REDPAPER_SEND_NAME = #{fRedpaperSendName,jdbcType=VARCHAR},
+      </if>
+      <if test="fRedpaperRemark != null" >
+        F_REDPAPER_REMARK = #{fRedpaperRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="fRedpaperWishing != null" >
+        F_REDPAPER_WISHING = #{fRedpaperWishing,jdbcType=VARCHAR},
+      </if>
+            <if test="fIsAnaMarket != null" >
+        F_IS_ANAMARKET = #{fIsAnaMarket,jdbcType=VARCHAR},
+      </if>
+            <if test="fCompareDay != null" >
+        F_COMPAREDAY = #{fCompareDay,jdbcType=VARCHAR},
+      </if>
+      <if test="fShopUserDivide != null" >
+        F_SHOP_USER_DIVIDE = #{fShopUserDivide,jdbcType=DECIMAL},
+      </if>
+      <if test="fBirthDate != null" >
+        F_BIRTH_DATE = #{fBirthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fChangeExpDay != null" >
+          F_CHANGE_EXP_DAY = #{fChangeExpDay,jdbcType=VARCHAR},
+      </if>
+      <if test="fExpDate != null" >
+          F_EXP_DATE = #{fExpDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fExpMultiple != null" >
+          F_EXP_MULTIPLE = #{fExpMultiple,jdbcType=VARCHAR},
+      </if>
+      <if test="fConsumptionCoditionRule != null">
+                F_CONSUMPTION_CODITION_RULE = #{fConsumptionCoditionRule,jdbcType=VARCHAR},
+       </if>
+       <if test="fExclusivePrivilegeRule != null">
+                F_EXCLUSIVE_PRIVILEGE = #{fExclusivePrivilegeRule,jdbcType=VARCHAR},
+       </if>
+      <if test="fMarketTypeId == 3 or fMarketTypeId == 4 or fMarketTypeId == 8 or fMarketTypeId == 9 or fMarketTypeId == 10 or fMarketTypeId == 11
+                or fMarketTypeId == 12 or fMarketTypeId == 13 or fMarketTypeId == 14 " >
+        F_NUMBEROFPEOPLE_CURRENT = (SELECT COUNT(*) from t_market_plan_exec_log WHERE F_MARKET_MAIN_ID =#{fMarketId} AND (F_BEFORE_LOG_ID IS NULL OR F_BEFORE_LOG_ID ='') AND (F_MARKET_MEMBER_TYPE IS NULL OR F_MARKET_MEMBER_TYPE ='1')),
+      </if>
+      <if test="useType != null">
+                F_USE_TYPE = #{useType,jdbcType=VARCHAR},
+      </if>
+
+	  <!--对应的营销树级别编码-->
+	  <if test="fJbNum != null">
+		<choose>
+			<when test="fJbNum == 0">
+				F_MARKET_TREE_CODE = #{fJbNum,jdbcType=VARCHAR},
+			</when>
+			<otherwise>
+				F_MARKET_TREE_CODE = (SELECT F_ID  FROM T_MARKET_INFO_TREE WHERE F_JB_NUM = #{fJbNum}),
+			</otherwise>
+		</choose>
+	   </if>
+    </set>
+    WHERE F_MARKET_ID = #{fMarketId,jdbcType=BIGINT}
+	</update>
+	
+    <insert id="addMarketPlanSubInfo">
+		insert into
+		t_market_plan_sub_info(F_MARKET_MAIN_ID,F_REWARD_TYPE,F_REWARD_VALUE,F_NUM)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.fMarketMainId},#{item.fRewardType},#{item.fRewardValue},#{item.fNum})
+		</foreach>
+	</insert>
+	
+    <insert id="addMarketFilterConditionRel" parameterType="com.qm.db.member.pojo.market.MarketFilterConditionRelBean">
+		insert into t_market_condition_rel(F_MARKET_ID,F_CONDITION_ID,F_TYPE,F_MER_ID) 
+		values(#{fMarketId},#{fConditionId},#{fType},#{fMerId})
+	</insert>
+	
+	<delete id="deleteMarketFilterConditionRel">
+		DELETE FROM T_MARKET_CONDITION_REL WHERE F_MARKET_ID = #{fMarketMainId}
+	</delete>
+	
+    <delete id="deleteMarketPlanSubInfo">
+		delete from t_market_plan_sub_info where F_MARKET_MAIN_ID=#{fMarketMainId}
+	</delete>
+	
+	
+			<!-- 查询营销发送记录列表 的总条数 ，暂时只查精准营销发送记录，生理抽营销发送记录-->
+	<select id="queryMarketSendRecordCount" resultType="java.lang.Integer">
+		SELECT  COUNT(*)  FROM
+		(SELECT t1.F_MARKET_PLAN_EXECUTE_ID ,t1.F_MARKET_MAIN_ID, t1.F_MARKET_MODIFY_DATE, IFNULL(t1.F_MARKET_COUNT,0) as F_MARKET_COUNT ,t2.F_MARKET_NAME,t1.F_STATE,t2.F_STATE as F_MARKET_STATE,
+		 (SELECT COUNT(*) from  t_market_plan_cus_rel WHERE F_STATE ='2' and  F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID) as FAILED_COUNT,
+		 (SELECT COUNT(*) from t_market_plan_cus_rel WHERE F_STATE ='1' and F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID) as EXECUTE_COUNT, t4.F_ID as F_MARKET_TYPE_ID,
+	  	t4.F_TYPE_NAME as F_MARKET_TYPE_NAME from T_MARKET_PLAN_EXECUTE_INFO  t1 LEFT JOIN t_market_plan_cus_rel t3  ON t3. F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID ,
+	  	t_market_plan_main_info t2,t_market_plan_type_info t4 
+	 	WHERE  t1.F_MARKET_MAIN_ID = t2.F_MARKET_ID AND t2.F_MARKET_TYPE_ID = t4.F_ID   AND t2.F_EXECUTE_STATE ='1'
+		<if test="fMarketName != null and fMarketName != ''">
+			AND t2.F_MARKET_NAME like CONCAT('%',#{fMarketName},'%')
+		</if>
+		<if test="fState != null and fState != ''">
+			<!-- 显示状态失败的营销记录 -->
+			<if test="fState==0">
+			AND	(t1.F_STATE ='0' or (SELECT COUNT(*) from t_market_plan_cus_rel WHERE F_STATE ='2' and F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID)	!= 0 )
+			</if>
+			<!-- 显示状态赠送中的营销记录 -->
+			<if test="fState==2">
+			AND	(t2.F_STATE ='1' and  (SELECT COUNT(*) from t_market_plan_cus_rel WHERE F_STATE ='1' and F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID)	!= 0 )
+			</if>
+			<!-- 否则显示成功状态的营销记录 -->
+			<if test="fState==1">
+			AND	(t2.F_STATE ='1' and  (SELECT COUNT(*) from t_market_plan_cus_rel WHERE F_STATE ='2' and F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID)= 0 
+			and (SELECT COUNT(*) from t_market_plan_cus_rel WHERE F_STATE ='1' and F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID)=0)
+			</if>
+		</if>
+		<if test="fMarketTypeId != null and fMarketTypeId != ''">
+			AND FIND_IN_SET(t2.F_MARKET_TYPE_ID,#{fMarketTypeId})
+		</if>
+		<if test="startTime != null and startTime != ''">
+			and t1.F_MARKET_EXECUTE_DATE &gt;= #{startTime}
+		</if>
+		<if test="endTime != null and endTime != ''">
+			and t1.F_MARKET_EXECUTE_DATE &lt;= #{endTime}
+		</if> 
+		<!-- 营销执行时间大于当前时间，并且没有执行的直接赠送营销，导入营销，不显示到再次发送记录里面 -->
+		<if test="nowTime != null and nowTime != ''">
+			AND ( (t2.F_EXECUTE_TIME <![CDATA[>=#{nowTime}]]>
+		and FIND_IN_SET(t2.F_MARKET_TYPE_ID,'2,17') AND t2.F_EXECUTE_STATE ='0') or (t2.F_EXECUTE_TIME <![CDATA[<=#{nowTime}]]> ) )  
+		</if>	
+		GROUP BY t1.F_MARKET_PLAN_EXECUTE_ID
+		ORDER BY t1.F_MARKET_MODIFY_DATE DESC) t3 
+	</select>
+	
+	
+	<!-- 查询营销发送记录列表 的总条数  暂时只查精准营销发送记录，生理抽营销发送记录-->
+	<select id="queryMarketSendRecord" resultMap="MarketPlanExecLogResultMap">
+	SELECT t1.F_MARKET_PLAN_EXECUTE_ID ,t1.F_MARKET_MAIN_ID, t1.F_MARKET_MODIFY_DATE, IFNULL(t1.F_MARKET_COUNT,0) as F_MARKET_COUNT ,t2.F_MARKET_NAME,t1.F_STATE,t2.F_STATE as F_MARKET_STATE,
+		 (SELECT COUNT(*) from  t_market_plan_cus_rel WHERE F_STATE ='2' and  F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID) as FAILED_COUNT,
+		 (SELECT COUNT(*) from t_market_plan_cus_rel WHERE F_STATE ='1' and F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID) as EXECUTE_COUNT, t4.F_ID as F_MARKET_TYPE_ID,
+	  	t4.F_TYPE_NAME as F_MARKET_TYPE_NAME from T_MARKET_PLAN_EXECUTE_INFO  t1 LEFT JOIN t_market_plan_cus_rel t3  ON t3. F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID ,
+	  	t_market_plan_main_info t2,t_market_plan_type_info t4 
+	 	WHERE  t1.F_MARKET_MAIN_ID = t2.F_MARKET_ID AND t2.F_MARKET_TYPE_ID = t4.F_ID   AND t2.F_EXECUTE_STATE ='1'
+		<if test="fMarketName != null and fMarketName != ''">
+			AND t2.F_MARKET_NAME like CONCAT('%',#{fMarketName},'%')
+		</if>
+		<if test="fState != null and fState != ''">
+			<!-- 显示状态失败的营销记录 -->
+			<if test="fState==0">
+			AND	(t1.F_STATE ='0' OR (SELECT COUNT(*) from t_market_plan_cus_rel WHERE F_STATE ='2' and F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID)	!= 0 )
+			</if>
+			<!-- 显示状态赠送中的营销记录 -->
+			<if test="fState==2">
+			AND	(t2.F_STATE ='1' and  (SELECT COUNT(*) from t_market_plan_cus_rel WHERE F_STATE ='1' and F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID)	!= 0 )
+			</if>
+			<!-- 否则显示成功状态的营销记录 -->
+			<if test="fState==1">
+			AND	(t2.F_STATE ='1' and  (SELECT COUNT(*) from t_market_plan_cus_rel WHERE F_STATE ='1' and F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID)= 0 
+			and (SELECT COUNT(*) from t_market_plan_cus_rel WHERE F_STATE ='1' and F_MARKET_CUS_REL_MAIN_ID = t1.F_MARKET_PLAN_EXECUTE_ID)=0)
+			</if>
+		</if>
+		<if test="fMarketTypeId != null and fMarketTypeId != ''">
+			AND FIND_IN_SET(t2.F_MARKET_TYPE_ID,#{fMarketTypeId})
+		</if>
+		<if test="startTime != null and startTime != ''">
+			and t1.F_MARKET_EXECUTE_DATE &gt;= #{startTime}
+		</if>
+		<if test="endTime != null and endTime != ''">
+			and t1.F_MARKET_EXECUTE_DATE &lt;= #{endTime}
+		</if> 
+		<!-- 营销执行时间大于当前时间，并且没有执行的直接赠送营销，导入营销，不显示到再次发送记录里面 -->
+		<if test="nowTime != null and nowTime != ''">
+			AND ( (t2.F_EXECUTE_TIME <![CDATA[>=#{nowTime}]]>
+		and FIND_IN_SET(t2.F_MARKET_TYPE_ID,'2,17') AND t2.F_EXECUTE_STATE ='0') or (t2.F_EXECUTE_TIME <![CDATA[<=#{nowTime}]]> ) )  
+		</if>	
+		GROUP BY t1.F_MARKET_PLAN_EXECUTE_ID
+		ORDER BY t1.F_MARKET_MODIFY_DATE DESC
+	</select>
+	
+	<select id="queryMarketPlanInfo" resultMap="BaseResultMap">
+	
+  	select t1.F_MARKET_ID,t1.F_MARKET_NAME,t1.F_EXECUTE_TIME,t1.F_EFFECT_DATE,t1.F_MARKET_TYPE_ID,t1.F_EXPIRE_DATE,t1.F_SMS_CONTENT,t1.F_NOTICE_CONTENT,t1.F_MERCHANT_ID,t1.F_STATE,t1.F_WECHAT_CONTENT,case when t1.F_IS_SMS = 1 then count(t4.F_LOG_ID) else 0 end F_IS_SMS
+	,case when t1.F_IS_NOTICE = 1 then count(t4.F_LOG_ID) else 0 end F_IS_NOTICE,case when t1.F_IS_WECHAT = 1 then count(t4.F_LOG_ID) else 0 end F_IS_WECHAT,t3.F_TYPE_NAME,t2.F_REWARD_VALUE,count(t4.F_LOG_ID) market_people
+					from t_market_plan_main_info t1 LEFT JOIN (select F_MARKET_MAIN_ID,F_REWARD_VALUE from t_market_plan_sub_info where F_REWARD_TYPE = 1 ) t2 on t1.F_MARKET_ID = t2.F_MARKET_MAIN_ID
+					LEFT JOIN t_market_plan_type_info t3 on t1.F_MARKET_TYPE_ID = t3.F_ID 
+					LEFT JOIN t_market_plan_exec_log t4 on t1.F_MARKET_ID = t4.F_MARKET_MAIN_ID 
+	where t1.F_MARKET_ID = #{marketId}	
+  </select>
+  
+  <!-- 查询所有到期的群组活动营销 -->
+  <select id="queryGroupActivityMarketInfoList" resultMap="BaseResultMap">
+  	SELECT t1.F_MARKET_ID,t1.F_MARKET_NAME,t1.F_EXECUTE_TIME,t1.F_EFFECT_DATE,t1.F_MARKET_TYPE_ID,t1.F_EXPIRE_DATE,
+      t1.F_SMS_CONTENT,t1.F_NOTICE_CONTENT,t1.F_MERCHANT_ID,t1.F_STATE,t1.F_WECHAT_CONTENT
+	  FROM T_MARKET_PLAN_MAIN_INFO t1
+	  WHERE FIND_IN_SET(t1.F_MARKET_TYPE_ID,'36,37,38') AND F_EXPIRE_DATE = DATE_FORMAT(DATE_SUB(curdate(),interval 1 day), '%Y%m%d')	
+  </select> 
+  
+  <!-- 查询营销下挂的群组 -->
+  <select id="queryGroupListByMarketId" resultMap="BaseResultMap">
+  	SELECT A.F_ACTIVITY_CODE, A.F_MARKET_ID, B.F_GROUP_CODE, C.F_EFFECT_DATE, C.F_EXPIRE_DATE, C.F_MARKET_TYPE_ID
+  	  FROM T_TEAM_ACTIVITY_MARKET_REL A 
+      JOIN T_TEAM_ACTIVITY_GROUP_INFO B ON A.F_ACTIVITY_CODE = B.F_ACTIVITY_CODE
+      JOIN T_MARKET_PLAN_MAIN_INFO C ON A.F_MARKET_ID = C.F_MARKET_ID
+      WHERE A.F_MARKET_ID = #{marketId}	
+  </select>
+  
+  <!-- 查询群组下的会员 -->
+  <select id="queryCusByGroupId" resultType="String">
+  	SELECT F_MEMBER_CODE FROM T_TEAM_ACTIVITY_GROUP_MEMBER_REL 
+  	  WHERE F_GROUP_CODE = #{groupId} AND F_ROLE_TYPE = '2' AND F_ACTIVITY_CODE = #{activityId}
+  </select>
+  
+  <!-- 查询营销方案下的级别 -->
+  <select id="queryLevelByMarketId" resultMap="LevelMap">
+    SELECT F_LEVEL_ID, F_LOWEST_FEE FROM T_MARKET_PLAN_LEVEL_REWARD_REL 
+      WHERE F_MARKET_ID = #{marketId} ORDER BY F_LOWEST_FEE
+  </select>
+  
+  <!-- 查询群组下的会员 -->
+  <select id="queryTotalUpByType" resultType="Long">
+  	<!-- 成长值 -->
+  	<if test="type == 36">
+  		SELECT SUM(IFNULL(t2.F_UP_HP,0)) as totalUPhp
+		from T_TEAM_ACTIVITY_GROUP_MEMBER_REL t1
+		LEFT JOIN t_cus_info t2 on t1.F_MEMBER_CODE = t2.F_CUS_CODE
+		where t1.F_ACTIVITY_CODE = #{activityCode}
+		and t1.F_GROUP_CODE = #{groupCode}
+		and t1.F_ROLE_TYPE = 2
+  	</if>
+  	<!-- 充值金额 -->
+  	<if test="type == 37">
+  		SELECT SUM(CASE WHEN t2.F_OPT_TYPE = 0 THEN t2.F_FEE ELSE -t2.F_FEE END) as fConsumeMoney
+		from T_TEAM_ACTIVITY_GROUP_MEMBER_REL t1
+		left join t_order_pay_main_info t2 on t1.F_MEMBER_CODE = t2.F_PAYER 
+		left join t_order_main_info t3 on t2.F_ORDER_NUM = t3.F_ORDER_NUMBER
+		where t1.F_ACTIVITY_CODE = #{activityCode}
+		and t1.F_GROUP_CODE = #{groupCode}
+		and t1.F_ROLE_TYPE = 2
+		and t3.F_ORDER_TYPE = 1
+		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+			<![CDATA[and (F_PAY_TIME >= #{startTime} and F_PAY_TIME <= #{endTime}) ]]>
+		</if>
+  	</if>
+  	<!-- 消费金额 -->
+  	<if test="type == 38">
+  		SELECT SUM(CASE WHEN t2.F_OPT_TYPE = 0 THEN t2.F_FEE_ALL ELSE -t2.F_FEE_ALL END) as consumeMoney
+		from T_TEAM_ACTIVITY_GROUP_MEMBER_REL t1
+		left join t_shop_order_pay_main_info t2 on t1.F_MEMBER_CODE = t2.F_PAYER
+		where t1.F_ACTIVITY_CODE = #{activityCode}
+		and t1.F_GROUP_CODE = #{groupCode}
+		and t1.F_ROLE_TYPE = 2
+		<!-- 查询开始时间和结束时间-->
+		<if test="startTime != null and startTime != '' and endTime != null and endTime != ''">
+			<![CDATA[ and (t2.F_PAY_TIME >= #{startTime} and t2.F_PAY_TIME <= #{endTime})]]>
+		</if>
+  	</if>
+  </select>
+  
+  <!-- 查询营销基本信息列表（营销名称，营销ID,营销类型，类型名称，营销名称）  -->
+  <select id ="queryBaseMarketPlanInfo" resultMap="BaseResultMap">
+  	SELECT   t.F_MARKET_ID,t.F_MARKET_NAME ,t.F_MARKET_TYPE_ID, t2.F_TYPE_NAME , t.F_MODIFED_TIME from t_market_plan_main_info t LEFT JOIN t_market_plan_type_info t2
+ 	ON t.F_MARKET_TYPE_ID = t2.F_ID   where 1=1 
+  	 <if test="marketStartTime != null and marketStartTime != ''">
+			and t.F_MODIFED_TIME &gt;= #{marketStartTime}
+		</if>
+		<if test="marketEndTime != null and marketEndTime != ''">
+			and t.F_MODIFED_TIME &lt;= #{marketEndTime}
+		</if>
+		<if test="marketName != null and marketName != ''">
+			and t.F_MARKET_NAME like CONCAT('%',#{marketName},'%')
+		</if> ORDER BY t.F_MODIFED_TIME DESC  LIMIT #{start}, #{pageSize}	
+  </select>
+  
+  
+   <!-- 查询营销基本信息列表（营销名称，营销ID,营销类型，类型名称，营销名称） 总数量  -->
+  <select id ="queryBaseMarketPlanInfoCount" resultType="int">
+  	SELECT   count(*)  from t_market_plan_main_info t where 1=1 
+  	 <if test="marketStartTime != null and marketStartTime != ''">
+			and t.F_MODIFED_TIME &gt;= #{marketStartTime}
+		</if>
+		<if test="marketEndTime != null and marketEndTime != ''">
+			and t.F_MODIFED_TIME &lt;= #{marketEndTime}
+		</if>
+		<if test="marketName != null and marketName != ''">
+			and t.F_MARKET_NAME like CONCAT('%',#{marketName},'%')
+		</if> 
+  </select>
+
+  <!-- 注册营销  -->
+  <select id="queryAvailableMarketingByLevelForRegist" resultMap="BaseResultMap">
+	  SELECT tm.* 
+		 FROM T_MARKET_PLAN_MAIN_INFO tm 
+		 JOIN T_MARKET_PLAN_TYPE_INFO tp on tp.F_ID = tm.F_MARKET_TYPE_ID
+		 JOIN T_MARKET_PLAN_TYPE_REF_INVO_INFO ti on ti.F_MARKET_TYPE_ID = tp.F_ID and ti.F_INVO_CODE=#{invo} and ti.F_SYSYTEM_NUM=#{sysNum} 
+		 JOIN T_MARKET_PLAN_GRADE_REF tmp on tm.F_MARKET_ID = tmp.F_MARKET_ID
+		 <if test="fUseTerminal ==1">
+		 	 LEFT JOIN t_market_plan_shop_rel srel on  tm.F_MARKET_ID=srel.F_MARKET_ID
+		 </if>
+		WHERE (tmp.F_GRADE_ID=(SELECT tci.F_CUS_GRADE_REL FROM t_cus_info tci where tci.F_CUS_CODE=#{cusCode}))  
+		and tm.F_STATE='1' and tm.F_MERCHANT_ID=#{merchantId} and ((ISNULL(tm.F_EFFECT_DATE) and ISNULL(tm.F_EXPIRE_DATE)) or 
+	  (<![CDATA[  STR_TO_DATE(tm.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+	   <![CDATA[ AND STR_TO_DATE(tm.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ]]>)) 
+	   <if test="fMarketingId != null and fMarketingId != ''">
+   		AND tm.F_MARKET_ID=#{fMarketingId}
+        </if>
+	   <if test="fUseTerminal != null and fUseTerminal != ''">
+	   		AND FIND_IN_SET(#{fUseTerminal},tm.F_USE_TERMINAL)
+	   		<if test="fUseTerminal ==1">
+	   		AND (srel.F_SHOP_CODE=#{shopCode} OR tm.F_SHOP_RULE='1') 
+	   		</if>
+	   </if>
+	    AND  EXISTS  (SELECT 1 from t_market_plan_main_info t WHERE   F_MARKET_ID  =tm.F_MARKET_ID and (t.F_EVERPEOPLENUMBER is null or t.F_EVERPEOPLENUMBER > 
+		(SELECT  COUNT(*) from t_market_plan_exec_log t2 WHERE t2.f_cus_id= #{cusCode} and t2.F_MARKET_MAIN_ID =tm.F_MARKET_ID AND (t2.F_BEFORE_LOG_ID IS NULL OR t2.F_BEFORE_LOG_ID ='') ))and 
+		(t.F_NUMBEROFPEOPLE is null or  t.F_NUMBEROFPEOPLE >
+	    (SELECT COUNT(*) from t_market_plan_exec_log t2 WHERE  t2.F_MARKET_MAIN_ID =tm.F_MARKET_ID AND (t2.F_BEFORE_LOG_ID IS NULL OR t2.F_BEFORE_LOG_ID ='') 
+	    AND (t2.F_MARKET_MEMBER_TYPE IS NULL OR t2.F_MARKET_MEMBER_TYPE ='1'))))
+  </select>
+  
+  <!-- 查询适用于某一等级的可用的营销主表信息 -->
+  <select id="queryAvailableMarketingByLevel" resultMap="BaseResultMap">
+	  SELECT tm.* 
+		 FROM T_MARKET_PLAN_MAIN_INFO tm 
+		 JOIN T_MARKET_PLAN_TYPE_INFO tp on tp.F_ID = tm.F_MARKET_TYPE_ID
+		 JOIN T_MARKET_PLAN_TYPE_REF_INVO_INFO ti on ti.F_MARKET_TYPE_ID = tp.F_ID and ti.F_INVO_CODE=#{invo} and ti.F_SYSYTEM_NUM=#{sysNum} 
+		 JOIN T_MARKET_PLAN_GRADE_REF tmp on tm.F_MARKET_ID = tmp.F_MARKET_ID
+		WHERE (tmp.F_GRADE_ID=(SELECT tci.F_CUS_GRADE_REL FROM t_cus_info tci where tci.F_CUS_CODE=#{cusCode}))  
+		and tm.F_STATE='1' and tm.F_MERCHANT_ID=#{merchantId} and ((ISNULL(tm.F_EFFECT_DATE) and ISNULL(tm.F_EXPIRE_DATE)) or 
+	  (<![CDATA[  STR_TO_DATE(tm.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+	   <![CDATA[ AND STR_TO_DATE(tm.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ]]>)) 
+	   <if test="fMarketingId != null and fMarketingId != ''">
+   		AND tm.F_MARKET_ID=#{fMarketingId}
+        </if>
+	   <if test="fUseTerminal != null and fUseTerminal != ''">
+	   		AND FIND_IN_SET(#{fUseTerminal},tm.F_USE_TERMINAL)
+	   </if>
+	    AND  EXISTS  (SELECT 1 from t_market_plan_main_info t WHERE   F_MARKET_ID  =tm.F_MARKET_ID and (t.F_EVERPEOPLENUMBER is null or t.F_EVERPEOPLENUMBER > 
+		(SELECT  COUNT(*) from t_market_plan_exec_log t2 WHERE t2.f_cus_id= #{cusCode} and t2.F_MARKET_MAIN_ID =tm.F_MARKET_ID AND (t2.F_BEFORE_LOG_ID IS NULL OR t2.F_BEFORE_LOG_ID ='') ))and 
+		(t.F_NUMBEROFPEOPLE is null or  t.F_NUMBEROFPEOPLE >
+	    (SELECT COUNT(*) from t_market_plan_exec_log t2 WHERE  t2.F_MARKET_MAIN_ID =tm.F_MARKET_ID AND (t2.F_BEFORE_LOG_ID IS NULL OR t2.F_BEFORE_LOG_ID ='') 
+	    AND (t2.F_MARKET_MEMBER_TYPE IS NULL OR t2.F_MARKET_MEMBER_TYPE ='1'))))
+  </select>
+  
+  
+    <select id="queryAvailablePerfectMarketing" resultMap="BaseResultMap">
+	  SELECT tm.*
+		FROM T_MARKET_PLAN_MAIN_INFO tm 
+		 JOIN T_MARKET_PLAN_TYPE_INFO tp on tp.F_ID = tm.F_MARKET_TYPE_ID
+		 		WHERE tm.F_STATE='1' and tm.F_MERCHANT_ID=#{merchantId} and ((ISNULL(tm.F_EFFECT_DATE) and ISNULL(tm.F_EXPIRE_DATE)) or 
+	  (<![CDATA[  STR_TO_DATE(tm.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+	   <![CDATA[ AND STR_TO_DATE(tm.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ]]>)) 
+	   AND tm.F_MARKET_ID = #{fMarketId}
+	   	AND  EXISTS  (SELECT 1 from t_market_plan_main_info t WHERE   F_MARKET_ID  =tm.F_MARKET_ID and (t.F_EVERPEOPLENUMBER is null or t.F_EVERPEOPLENUMBER > 
+		(SELECT  COUNT(*) from t_market_plan_exec_log t2 WHERE t2.f_cus_id= #{cusCode} and t2.F_MARKET_MAIN_ID =tm.F_MARKET_ID AND (t2.F_BEFORE_LOG_ID IS NULL OR t2.F_BEFORE_LOG_ID ='') ))and 
+		(t.F_NUMBEROFPEOPLE is null or  t.F_NUMBEROFPEOPLE >
+	    (SELECT COUNT(*) from t_market_plan_exec_log t2 WHERE  t2.F_MARKET_MAIN_ID =tm.F_MARKET_ID AND (t2.F_BEFORE_LOG_ID IS NULL OR t2.F_BEFORE_LOG_ID ='') 
+	    AND (t2.F_MARKET_MEMBER_TYPE IS NULL OR t2.F_MARKET_MEMBER_TYPE ='1'))))
+	    
+	      			   AND (tm.F_EXCLUSIVE_PRIVILEGE = 0 OR (tm.F_EXCLUSIVE_PRIVILEGE=1 AND 
+						tm.F_MARKET_ID IN 
+						(SELECT F_MARKE_OR_PROMOTION_CODE FROM t_cus_package_info A
+							LEFT JOIN t_cus_package_sub_info B ON A.F_MAIN_ID = B.F_MAIN_ID
+							WHERE A.F_PACKAGE_TYPE = 1 AND A.F_STATE =1 AND B.F_USE_TYPE = '12'
+							AND A.F_CUS_CODE = #{cusCode}
+							UNION ALL 
+							SELECT C.F_MARKE_OR_PROMOTION_CODE FROM T_GRADE_PRIVILEGE_REL A,
+							T_PACKAGE_SUB_INFO C 
+							WHERE A.F_GRADE_ID = (
+							SELECT F_CUS_GRADE_REL FROM T_CUS_INFO WHERE F_CUS_CODE = #{cusCode}
+							) AND A.F_PRIVILEGE_ID=C.F_PACKAGE_SUB_CODE
+							AND C.F_STATE = 1 AND C.F_PACKAGE_TYPE =1 AND C.F_USE_TYPE = '12'
+						)
+						))
+	    
+  </select>
+  
+  
+  <!-- 根据营销ID查询可使用的营销主表信息 -->
+  <select id="queryAvailableMarketingByMarketingId" resultMap="BaseResultMap">
+	  SELECT tm.*      
+	  FROM T_MARKET_PLAN_TYPE_REF_INVO_INFO ti ,T_MARKET_PLAN_TYPE_INFO tp ,T_MARKET_PLAN_MAIN_INFO tm, T_MARKET_PLAN_GRADE_REF tmp
+	  where ti.F_INVO_CODE=#{invo} and ti.F_MARKET_TYPE_ID = tp.F_ID and tp.F_ID = tm.F_MARKET_TYPE_ID and ti.F_SYSYTEM_NUM=#{sysNum} 
+	  AND tm.F_MARKET_ID = tmp.F_MARKET_ID
+	  AND (tmp.F_GRADE_ID=(SELECT tci.F_CUS_GRADE_REL FROM t_cus_info tci where tci.F_CUS_CODE=#{cusCode}))
+	  and tm.F_MERCHANT_ID=#{merchantId} and tm.F_MARKET_ID=#{marketingMainId} and tm.F_STATE='1' 
+	  and ((ISNULL(tm.F_EFFECT_DATE) and ISNULL(tm.F_EXPIRE_DATE)) or 
+	  (<![CDATA[  STR_TO_DATE(tm.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+	   <![CDATA[ AND STR_TO_DATE(tm.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ]]>))
+	   and  EXISTS  (SELECT 1 from t_market_plan_main_info t WHERE   F_MARKET_ID  =#{marketingMainId} and (t.F_EVERPEOPLENUMBER is null or t.F_EVERPEOPLENUMBER > 
+		(SELECT  COUNT(*) from t_market_plan_exec_log t2 WHERE t2.f_cus_id= #{cusCode} and t2.F_MARKET_MAIN_ID =#{marketingMainId} AND (t2.F_BEFORE_LOG_ID IS NULL OR t2.F_BEFORE_LOG_ID ='')))and 
+		(t.F_NUMBEROFPEOPLE is null or  t.F_NUMBEROFPEOPLE >
+	(SELECT COUNT(*) from t_market_plan_exec_log t2 WHERE  t2.F_MARKET_MAIN_ID =#{marketingMainId} AND (t2.F_BEFORE_LOG_ID IS NULL OR t2.F_BEFORE_LOG_ID ='') 
+	    AND (t2.F_MARKET_MEMBER_TYPE IS NULL OR t2.F_MARKET_MEMBER_TYPE ='1'))))
+	      					     AND (tm.F_EXCLUSIVE_PRIVILEGE = 0 OR (tm.F_EXCLUSIVE_PRIVILEGE=1 AND 
+						tm.F_MARKET_ID IN 
+						(SELECT F_MARKE_OR_PROMOTION_CODE FROM t_cus_package_info A
+							LEFT JOIN t_cus_package_sub_info B ON A.F_MAIN_ID = B.F_MAIN_ID
+							WHERE A.F_PACKAGE_TYPE = 1 AND A.F_STATE =1 AND B.F_USE_TYPE = '14'
+							AND A.F_CUS_CODE = #{cusCode}
+							UNION ALL 
+							SELECT C.F_MARKE_OR_PROMOTION_CODE FROM T_GRADE_PRIVILEGE_REL A,
+							T_PACKAGE_SUB_INFO C 
+							WHERE A.F_GRADE_ID = (
+							SELECT F_CUS_GRADE_REL FROM T_CUS_INFO WHERE F_CUS_CODE = #{cusCode}
+							) AND A.F_PRIVILEGE_ID=C.F_PACKAGE_SUB_CODE
+							AND C.F_STATE = 1 AND C.F_PACKAGE_TYPE =1 AND C.F_USE_TYPE = '14'
+						)
+						)
+						OR (tm.F_EXCLUSIVE_PRIVILEGE = 2 and tm.F_MARKET_ID IN (
+						SELECT DISTINCT t2.F_MARKET_ID from T_TEAM_ACTIVITY_GROUP_MEMBER_REL t1, T_TEAM_ACTIVITY_MARKET_REL t2
+						where t1.F_MEMBER_CODE = #{cusCode} and t1.F_ROLE_TYPE = 2
+						and t1.F_ACTIVITY_CODE = t2.F_ACTIVITY_CODE
+						and t2.F_MARKET_TYPE_ID = tm.F_MARKET_TYPE_ID
+						and t2.F_STATE='1'
+						) )
+						)
+  </select>
+  <!-- 根据卡方案和买卡数量查询营销ID -->
+  <select id="queryMarketingIdByMultipleCardProduct" resultType="String">
+  	SELECT
+		t1.F_MARKET_ID
+	FROM
+		t_market_plan_main_info t1
+	RIGHT JOIN t_market_plan_multiplecard_product_rel t2 ON t1.F_MARKET_ID = T2.F_MARKET_ID
+	WHERE
+		T1.F_STATE = '1'
+	AND T2.F_PRODUCT_NUM = #{fProductNum}
+	AND T1.F_LOWEST_FEE &lt; = #{fLowestFee}
+	AND ((ISNULL(t1.F_EFFECT_DATE) and ISNULL(t1.F_EXPIRE_DATE)) or 
+	  (<![CDATA[  STR_TO_DATE(t1.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+	   <![CDATA[ AND STR_TO_DATE(t1.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ]]>)) 
+	ORDER BY
+		T1.F_LOWEST_FEE DESC
+  
+  </select>
+  
+  <!-- 根据子订单中的商品取出对应有营销的主营销 -->
+ <select id="queryMarketingIdByGoodsAndShop" resultMap="BaseResultMap">
+  SELECT * FROM (
+  	SELECT * FROM (
+		SELECT
+			T.*
+		FROM
+			(
+				SELECT
+					t1.*, osi.f_goods_num,
+					osi.F_ASSISTANT,
+					osi.f_goods_sum_amount,
+					osi.F_GOODS_COUNT
+				FROM
+					t_market_plan_main_info t1
+				INNER JOIN t_market_plan_goods_rel t2 ON t1.F_MARKET_ID = t2.F_MARKET_ID
+				INNER JOIN (
+					SELECT
+						f_order_num,
+						f_goods_num,
+						sum(f_goods_sum_amount) f_goods_sum_amount,
+						SUBSTRING(t2.f_build_time,1,8) f_build_time,
+						t1.F_ASSISTANT,
+						t2.F_ORDER_MONEY,
+						sum(CASE WHEN f_goods_sum_amount > 0 THEN t1.F_GOODS_COUNT ELSE 0 END) F_GOODS_COUNT
+					FROM
+						t_shop_order_sub_info t1,
+						t_shop_order_main_info t2
+					WHERE
+						t1.f_order_num = t2.f_order_number
+					AND t1.f_order_num = #{orderNum}
+					AND t1.f_state = 0
+					GROUP BY F_GOODS_NUM
+				) osi ON t2.f_goods_num = osi.f_goods_num
+				LEFT JOIN t_market_plan_shop_rel t3 ON t1.F_MARKET_ID = t3.F_MARKET_ID
+				WHERE
+					t1.F_STATE = '1'
+				AND (
+					t1.f_shop_rule = 1
+					OR t3.f_shop_code = #{shopId}
+				)
+				AND t1.F_MERCHANT_ID = #{merId}
+				AND t1.f_market_type_id = '29'
+				AND <![CDATA[ t1.F_EFFECT_DATE <= osi.f_build_time ]]>
+				AND <![CDATA[ t1.F_EXPIRE_DATE >= osi.f_build_time ]]>
+				ORDER BY
+					T1.F_MODIFED_TIME DESC
+			) T
+		GROUP BY
+			T.f_goods_num
+			
+		UNION ALL
+		<!-- 品牌 -->	
+		SELECT
+			T.*
+		FROM
+			(
+				SELECT
+					t1.*, osi.f_goods_num,
+					osi.F_ASSISTANT,
+					osi.f_goods_sum_amount,
+					osi.F_GOODS_COUNT
+				FROM
+					t_market_plan_main_info t1
+				INNER JOIN t_market_plan_goods_rel t2 ON t1.F_MARKET_ID = t2.F_MARKET_ID
+				INNER JOIN (
+					SELECT
+						f_order_num,
+						f_goods_num,
+						t1.F_GOODS_BRAND,
+						sum(f_goods_sum_amount) f_goods_sum_amount,
+						SUBSTRING(t2.f_build_time,1,8) f_build_time,
+						t1.F_ASSISTANT,
+						t2.F_ORDER_MONEY,
+						sum(CASE WHEN f_goods_sum_amount > 0 THEN t1.F_GOODS_COUNT ELSE 0 END) F_GOODS_COUNT
+					FROM
+						t_shop_order_sub_info t1,
+						t_shop_order_main_info t2
+					WHERE
+						t1.f_order_num = t2.f_order_number
+					AND t1.f_order_num = #{orderNum}
+					AND t1.f_state = 0
+					GROUP BY f_goods_num
+				) osi ON t2.f_goods_num = osi.F_GOODS_BRAND
+				LEFT JOIN t_market_plan_shop_rel t3 ON t1.F_MARKET_ID = t3.F_MARKET_ID
+				WHERE
+					t1.F_STATE = '1'
+				AND (
+					t1.f_shop_rule = 1
+					OR t3.f_shop_code = #{shopId}
+				)
+				AND t1.F_MERCHANT_ID = #{merId}
+				AND t1.f_market_type_id = '29'
+				AND <![CDATA[ t1.F_EFFECT_DATE <= osi.f_build_time ]]>
+				AND <![CDATA[ t1.F_EXPIRE_DATE >= osi.f_build_time ]]>
+				ORDER BY
+					T1.F_MODIFED_TIME DESC
+			) T
+		GROUP BY
+			T.f_goods_num
+			
+		UNION ALL
+		<!-- 品类 -->	
+		SELECT
+			T.*
+		FROM
+			(
+				SELECT
+					t1.*, osi.f_goods_num,
+					osi.F_ASSISTANT,
+					osi.f_goods_sum_amount,
+					osi.F_GOODS_COUNT
+				FROM
+					t_market_plan_main_info t1
+				INNER JOIN t_market_plan_goods_rel t2 ON t1.F_MARKET_ID = t2.F_MARKET_ID
+				INNER JOIN (
+					SELECT
+						f_order_num,
+						f_goods_num,
+						t1.F_GOODS_CLS,
+						sum(f_goods_sum_amount) f_goods_sum_amount,
+						SUBSTRING(t2.f_build_time,1,8) f_build_time,
+						t1.F_ASSISTANT,
+						t2.F_ORDER_MONEY,
+						sum(CASE WHEN f_goods_sum_amount > 0 THEN t1.F_GOODS_COUNT ELSE 0 END) F_GOODS_COUNT
+					FROM
+						t_shop_order_sub_info t1,
+						t_shop_order_main_info t2
+					WHERE
+						t1.f_order_num = t2.f_order_number
+					AND t1.f_order_num = #{orderNum}
+					AND t1.f_state = 0
+					GROUP BY f_goods_num
+				) osi ON t2.f_goods_num = left(osi.F_GOODS_CLS,CHAR_LENGTH(t2.F_GOODS_NUM))
+				LEFT JOIN t_market_plan_shop_rel t3 ON t1.F_MARKET_ID = t3.F_MARKET_ID
+				WHERE
+					t1.F_STATE = '1'
+				AND (
+					t1.f_shop_rule = 1
+					OR t3.f_shop_code = #{shopId}
+				)
+				AND t1.F_MERCHANT_ID = #{merId}
+				AND t1.f_market_type_id = '29'
+				AND <![CDATA[ t1.F_EFFECT_DATE <= osi.f_build_time ]]>
+				AND <![CDATA[ t1.F_EXPIRE_DATE >= osi.f_build_time ]]>
+				ORDER BY
+					T1.F_MODIFED_TIME DESC
+			) T
+		GROUP BY
+			T.f_goods_num
+	) TT ORDER BY TT.F_MODIFED_TIME DESC
+ ) TTT GROUP BY TTT.F_GOODS_NUM
+ </select>
+ 
+ <insert id="inserMarketRegistCusNotRewardRel" parameterType="com.qm.db.member.pojo.market.MarketRegistCusNotReardRelInfo" >
+    INSERT INTO T_MARKET_REGIST_CUS_NOT_REWARD_REL (F_MARKET_ID, F_CUS_CODE, F_ORG_ID, 
+      F_STATE, F_CREATE_TIME, F_TYPE, 
+      F_FIRST_ORDER_NUM, F_REWARD_TIME)
+      VALUES (#{fMarketId,jdbcType=BIGINT}, #{fCusCode,jdbcType=VARCHAR}, #{fOrgId,jdbcType=VARCHAR}, 
+      #{fState,jdbcType=BIGINT}, #{fCreateTime,jdbcType=VARCHAR}, #{fType,jdbcType=INTEGER}, 
+      #{fFirstOrderNum,jdbcType=VARCHAR}, #{fRewardTime,jdbcType=VARCHAR})
+  </insert>
+  
+  <select id="selectMarketRegistCusNotRewardRel" resultMap="BaseResult_MRCNRR_Map">
+     SELECT 
+     TM.F_MARKET_ID, F_CUS_CODE, F_ORG_ID, TM.F_STATE, TM.F_CREATE_TIME, F_TYPE, F_FIRST_ORDER_NUM,F_REWARD_TIME
+     FROM T_MARKET_REGIST_CUS_NOT_REWARD_REL TR
+     INNER JOIN T_MARKET_PLAN_MAIN_INFO TM  ON TR.F_MARKET_ID = TM.F_MARKET_ID
+     WHERE 
+     TR.F_CUS_CODE = #{cusCode} AND TR.F_STATE = 0 
+     AND tm.F_STATE='1' and ((ISNULL(tm.F_EFFECT_DATE) and ISNULL(tm.F_EXPIRE_DATE)) or 
+	  (<![CDATA[  STR_TO_DATE(tm.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+	   <![CDATA[ AND STR_TO_DATE(tm.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ]]>)) 
+	 AND  EXISTS  (SELECT 1 from t_market_plan_main_info t WHERE   F_MARKET_ID  =tm.F_MARKET_ID and 
+		(t.F_NUMBEROFPEOPLE is null or  t.F_NUMBEROFPEOPLE >
+	    (SELECT COUNT(*) from t_market_plan_exec_log t2 WHERE  t2.F_MARKET_MAIN_ID =tm.F_MARKET_ID AND (t2.F_BEFORE_LOG_ID IS NULL OR t2.F_BEFORE_LOG_ID ='') 
+	    AND (t2.F_MARKET_MEMBER_TYPE IS NULL OR t2.F_MARKET_MEMBER_TYPE ='1'))))
+	    
+	    					      						AND (TM.F_EXCLUSIVE_PRIVILEGE = 0 OR (TM.F_EXCLUSIVE_PRIVILEGE=1 AND 
+						TM.F_MARKET_ID IN 
+						(SELECT F_MARKE_OR_PROMOTION_CODE FROM t_cus_package_info A
+							LEFT JOIN t_cus_package_sub_info B ON A.F_MAIN_ID = B.F_MAIN_ID
+							WHERE A.F_PACKAGE_TYPE = 1 AND A.F_STATE =1 AND B.F_USE_TYPE = '10'
+							AND A.F_CUS_CODE = #{cusCode}
+							UNION ALL 
+							SELECT C.F_MARKE_OR_PROMOTION_CODE FROM T_GRADE_PRIVILEGE_REL A,
+							T_PACKAGE_SUB_INFO C 
+							WHERE A.F_GRADE_ID = (
+							SELECT F_CUS_GRADE_REL FROM T_CUS_INFO WHERE F_CUS_CODE = #{cusCode}
+							) AND A.F_PRIVILEGE_ID=C.F_PACKAGE_SUB_CODE
+							AND C.F_STATE = 1 AND C.F_PACKAGE_TYPE =1 AND C.F_USE_TYPE = '10'
+						)
+						))
+  </select>
+  
+   <update id="updateMarketRegistCusNotRewardRelState" >
+    UPDATE T_MARKET_REGIST_CUS_NOT_REWARD_REL SET  F_STATE = 1
+    WHERE F_MARKET_ID = #{fMarketId}  AND F_CUS_CODE = #{cusCode}
+  </update>
+  
+  <!-- 添加营销与会员等级关联 -->
+  	<insert id="addMarketLevelRel" parameterType="Map">
+		INSERT INTO 
+		T_MARKET_PLAN_GRADE_REF 
+		(
+			F_MARKET_ID,
+			F_GRADE_ID
+		)
+		VALUES
+		<foreach collection="levelList" item="item" index="index" separator=",">
+			(
+				#{marketPlanMainInfoBean.fMarketId},
+				#{item}
+			)
+		</foreach>
+	</insert>
+	
+	<select id="getMarketPlanMainByTypeId" parameterType="Map" resultMap="BaseResultMap">
+		SELECT  F_MARKET_ID, F_MARKET_NAME, F_MARKET_TYPE_ID,F_MERCHANT_ID,F_EFFECT_DATE,F_EXPIRE_DATE, F_STATE, F_MODIFIER,
+		F_MODIFED_TIME,F_IS_SMS,F_IS_NOTICE,F_SMS_CONTENT,F_NOTICE_CONTENT,F_EXECUTE_STATE,F_EXECUTE_TIME,F_CREATE_TIME,
+		F_EVERPEOPLENUMBER,F_NUMBEROFPEOPLE,F_SHOP_USER_DIVIDE,F_BIRTH_DATE 
+		FROM t_market_plan_main_info  WHERE
+		F_MARKET_TYPE_ID = #{fMarketTypeId} 		
+		<if test="nowTime != null and nowTime != ''">
+			AND F_EXPIRE_DATE >=#{nowTime}
+		</if>
+		<if test="fState != null and fState != ''">
+			AND F_STATE = #{fState}
+		</if>
+	</select>
+	
+	<!-- 删除会员等级关联 -->
+	<delete id="delMarketLevelRel" parameterType="Map">
+		DELETE FROM 
+			T_MARKET_PLAN_GRADE_REF 
+		WHERE 
+			F_MARKET_ID = #{fMarketId}
+	</delete>
+	
+	<!-- 更新方案赠送信息 -->
+	<update id="updateMarketPlanSubInfoBySubMarketId" >
+		<foreach collection="list" item="item" index="index"
+				 separator=";">
+			UPDATE T_MARKET_PLAN_SUB_INFO
+			<set>
+				<if test="item.fMarketMainId != null and item.fMarketMainId != '' " >
+					F_MARKET_MAIN_ID = #{item.fMarketMainId,jdbcType=VARCHAR},
+				</if>
+				<if test="item.fRewardType != null and item.fRewardType != '' " >
+					F_REWARD_TYPE = #{item.fRewardType,jdbcType=VARCHAR},
+				</if>
+				<if test="item.fRewardValue != null and item.fRewardValue != '' " >
+					F_REWARD_VALUE = #{item.fRewardValue,jdbcType=VARCHAR},
+				</if>
+				<if test="item.fNum != null and item.fNum != '' " >
+					F_NUM = #{item.fNum,jdbcType=INTEGER},
+				</if>
+				<if test="item.fRewardValue_min != null and item.fRewardValue_min != '' " >
+					F_REWARD_VALUE_MIN = #{item.fRewardValue_min,jdbcType=BIGINT},
+				</if>
+				<if test="item.fRewardValue_max != null and item.fRewardValue_max != '' " >
+					F_REWARD_VALUE_MAX = #{item.fRewardValue_max,jdbcType=BIGINT},
+				</if>
+			</set>
+			WHERE F_MARKET_SUB_ID = #{item.fMarketSubId}
+		</foreach>
+	</update>
+	
+	<!--  删除方案赠送信息 -->
+	<delete id="deleteMarketPlanSubInfoByKeyStr">
+            DELETE FROM T_MARKET_PLAN_SUB_INFO 
+            WHERE FIND_IN_SET(F_MARKET_SUB_ID, #{marketSubKey2Del}); 
+    </delete>
+    <!--  删除积分 -->
+	<delete id="deleteMarketPlanSubInfoBySubMarketId">
+		DELETE FROM T_MARKET_PLAN_SUB_INFO
+		WHERE F_MARKET_SUB_ID IN
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			#{item.fMarketSubId}
+		</foreach>
+	</delete>
+  <!-- 营业员方案信息查询 -->
+  <select id="getShopUserPlanMainInfo" resultMap="BaseResult2ShopUserMap">
+  		SELECT F_ID, F_NAME, F_PLAN_TYPE, F_EFFECTIVE_TYPE, F_TIME_TYPE, 
+		F_BEGIN_TIME, F_END_TIME, F_SHOP_RULE, F_STATE, F_REMARK,F_STATISTICAL_TYPE
+		FROM T_SHOP_USER_PLAN_MAIN_INFO 
+		WHERE F_ID = #{fId}
+  </select>
+  
+  <select id="queryAvailableMarketingForShopUserOfTicketdUsed" resultMap="SingerMarktingPlanGoods2ShopUserMap">
+  SELECT A.*,C.F_ID FROM (
+         SELECT A.*,GROUP_CONCAT(F_ASSISTANT) AS F_ASSISTANT FROM (
+  	     SELECT mpmi1.* FROM 
+			t_market_plan_main_info mpmi1 LEFT JOIN t_market_plan_shop_rel srel on  mpmi1.F_MARKET_ID=srel.F_MARKET_ID,
+			T_MARKET_PLAN_GRADE_REF tmp,
+			t_market_plan_goods_rel mpgr1,
+			(
+				SELECT C.F_TICKET_TYPE_ID,COUNT(C.F_TICKET_TYPE_ID) AS F_TICKET_TYPE_COUNT FROM t_shop_order_main_info A
+				LEFT JOIN t_shop_order_pay_main_info B ON A.F_ORDER_NUMBER = B.F_ORDER_NUM
+				LEFT JOIN t_shop_order_pay_sub_info  C ON B.F_PAY_NUM = C.F_PAY_NUM
+				WHERE A.F_ORDER_NUMBER  = #{fOrderNum} AND B.F_OPT_TYPE = 0
+				AND C.F_PAY_TYPE in (5,7,12)
+				GROUP BY C.F_TICKET_TYPE_ID 
+			) t1
+			WHERE
+			mpmi1.F_MARKET_TYPE_ID = '33' AND (srel.F_SHOP_CODE=#{shopCode} or mpmi1.F_SHOP_RULE='1') 
+			AND (tmp.F_GRADE_ID=(SELECT tci.F_CUS_GRADE_REL FROM t_cus_info tci where tci.F_CUS_CODE=#{cusCode}))
+			AND	mpgr1.F_GOODS_NUM = t1.F_TICKET_TYPE_ID
+			AND mpgr1.F_USE_TYPE = 4
+			AND mpmi1.F_STATE='1'
+			AND mpmi1.F_MARKET_ID = mpgr1.F_MARKET_ID
+			and ((ISNULL(mpmi1.F_EFFECT_DATE) and ISNULL(mpmi1.F_EXPIRE_DATE)) or 
+			(<![CDATA[  STR_TO_DATE(mpmi1.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+			<![CDATA[ AND STR_TO_DATE(mpmi1.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ]]>))
+			<!-- 限制参与人次 -->
+			<![CDATA[AND (mpmi1.F_NUMBEROFPEOPLE IS NULL OR mpmi1.F_NUMBEROFPEOPLE = '' OR CONVERT(mpmi1.F_NUMBEROFPEOPLE,SIGNED) > CONVERT(IFNULL(mpmi1.F_NUMBEROFPEOPLE_CURRENT,0),SIGNED)) ]]>
+			GROUP BY mpmi1.F_MARKET_ID
+		    HAVING
+			SUM(t1.F_TICKET_TYPE_COUNT) >= mpmi1.F_LOWEST_FEE
+			) A JOIN 
+			(SELECT DISTINCT F_ASSISTANT FROM T_SHOP_ORDER_SUB_INFO WHERE F_ORDER_NUM = #{fOrderNum}) B ON 1=1
+			GROUP BY A.F_MARKET_ID
+			) A INNER JOIN T_SHOP_USER_PLAN_MARKET_REL B ON A.F_MARKET_ID = B.F_MARKET_PLAN_ID
+		  INNER JOIN T_SHOP_USER_PLAN_MAIN_INFO C ON C.F_ID = B.F_USER_PLAN_ID
+		  LEFT JOIN T_SHOP_USER_PLAN_SHOP_REL SREL ON SREL.F_USER_PLAN_ID = C.F_ID
+		  WHERE C.F_STATE = 1
+		  AND (C.F_TIME_TYPE = 0 OR 
+		  (<![CDATA[  STR_TO_DATE(C.F_BEGIN_TIME,'%Y%m%d' ) <= DATE_FORMAT(CURDATE(), '%Y%m%d') ]]>
+		  <![CDATA[ AND STR_TO_DATE(C.F_END_TIME,'%Y%m%d' ) >= DATE_FORMAT(CURDATE(), '%Y%m%d') ]]>))
+		  AND (SREL.F_SHOP_CODE=#{shopCode} or C.F_SHOP_RULE='1') 
+			
+  </select>
+  
+  <select id="queryAvailableMarketingByMarketingIdForShopUser" resultMap="SingerMarktingPlanGoods2ShopUserMap">
+	      SELECT A.*,C.F_ID FROM 
+	      (
+			  SELECT TM.*      
+			  FROM T_MARKET_PLAN_TYPE_REF_INVO_INFO ti ,T_MARKET_PLAN_TYPE_INFO tp ,T_MARKET_PLAN_MAIN_INFO tm, T_MARKET_PLAN_GRADE_REF tmp
+			  where ti.F_INVO_CODE=#{invo} and ti.F_MARKET_TYPE_ID = tp.F_ID and tp.F_ID = tm.F_MARKET_TYPE_ID and ti.F_SYSYTEM_NUM=#{sysNum} 
+			  AND tm.F_MARKET_ID = tmp.F_MARKET_ID
+			  AND (tmp.F_GRADE_ID=(SELECT tci.F_CUS_GRADE_REL FROM t_cus_info tci where tci.F_CUS_CODE=#{cusCode}))
+			  and tm.F_MERCHANT_ID=#{merchantId} and tm.F_MARKET_ID=#{marketingMainId} and tm.F_STATE='1' 
+			  and ((ISNULL(tm.F_EFFECT_DATE) and ISNULL(tm.F_EXPIRE_DATE)) or 
+			  (<![CDATA[  STR_TO_DATE(tm.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+			   <![CDATA[ AND STR_TO_DATE(tm.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ]]>))
+			   and  EXISTS  (SELECT 1 from t_market_plan_main_info t WHERE   F_MARKET_ID  =#{marketingMainId} and (t.F_EVERPEOPLENUMBER is null or t.F_EVERPEOPLENUMBER > 
+				(SELECT  COUNT(*) from t_market_plan_exec_log t2 WHERE t2.f_cus_id= #{cusCode} and t2.F_MARKET_MAIN_ID =#{marketingMainId} AND (t2.F_BEFORE_LOG_ID IS NULL OR t2.F_BEFORE_LOG_ID ='')))and 
+				(t.F_NUMBEROFPEOPLE is null or  t.F_NUMBEROFPEOPLE >
+			(SELECT COUNT(*) from t_market_plan_exec_log t2 WHERE  t2.F_MARKET_MAIN_ID =#{marketingMainId} AND (t2.F_BEFORE_LOG_ID IS NULL OR t2.F_BEFORE_LOG_ID ='') 
+			    AND (t2.F_MARKET_MEMBER_TYPE IS NULL OR t2.F_MARKET_MEMBER_TYPE ='1'))))
+		  ) A INNER JOIN T_SHOP_USER_PLAN_MARKET_REL B ON A.F_MARKET_ID = B.F_MARKET_PLAN_ID
+		  INNER JOIN T_SHOP_USER_PLAN_MAIN_INFO C ON C.F_ID = B.F_USER_PLAN_ID
+		  LEFT JOIN T_SHOP_USER_PLAN_SHOP_REL SREL ON SREL.F_USER_PLAN_ID = C.F_ID
+		  WHERE C.F_STATE = 1
+		  AND (C.F_TIME_TYPE = 0 OR 
+		  (<![CDATA[  STR_TO_DATE(C.F_BEGIN_TIME,'%Y%m%d' ) <= DATE_FORMAT(CURDATE(), '%Y%m%d') ]]>
+		  <![CDATA[ AND STR_TO_DATE(C.F_END_TIME,'%Y%m%d' ) >= DATE_FORMAT(CURDATE(), '%Y%m%d') ]]>))
+		  AND (SREL.F_SHOP_CODE=#{shopCode} or C.F_SHOP_RULE='1') 
+  </select>
+  
+  <select id="queryMarketPlan2CusGradeUpgrade" resultMap="BaseResultMap">
+     SELECT distinct B.* FROM T_GRADE_PRIVILEGE_REL A,T_MARKET_PLAN_MAIN_INFO B
+     WHERE A.F_MARKET_ID = B.F_MARKET_ID  AND A.F_GRADE_ID = #{fCusGradeRel2Rewrd} AND B.F_STATE = 1
+  </select>
+
+    <!--根据主键CUS_UPDATE_REMIND查询商户端会员升级提醒设置-->
+    <select id="getCusUpdateRemindByPrimaryKey" resultMap="BaseResultMap">
+            SELECT
+                F_IS_SMS,
+                F_SMS_CONTENT,
+                F_IS_NOTICE,
+                F_NOTICE_CONTENT,
+                F_IS_WECHAT,
+                F_WECHAT_CONTENT,
+                F_STATE
+            FROM
+                T_SYSTEM_PARAM_REMIND_INFO
+            WHERE
+                f_param_key = 'CUS_UPDATE_REMIND'
+    </select>
+  
+  	<update id="editMarketCusCount2Null">
+	
+	UPDATE F_MARKET_CUS_MARKET_COUNT SET F_CONTROL = NULL WHERE F_MARKET_ID = #{fMarketId}
+	
+	</update>
+	
+	    <select id="getMarketPlanMainInfoByTj" resultMap="BaseResultMap">
+		SELECT 
+			T1.*,T3.F_ACTIVITY_ID AS F_CONDITION_ID, T3.F_ACTIVITY_NAME AS F_CONDITION_NAME,T2.F_TYPE AS F_TYPE
+		FROM 
+			T_MARKET_PLAN_MAIN_INFO T1
+			LEFT JOIN T_MARKET_CONDITION_REL T2 ON T1.F_MARKET_ID=T2.F_MARKET_ID 
+ 			LEFT JOIN t_tj_activity_info T3 ON T2.F_CONDITION_ID=T3.F_ACTIVITY_ID
+		WHERE 
+			T1.F_MERCHANT_ID=#{fMerchantId} 
+			AND T1.F_MARKET_ID=#{fMarketId}
+	</select>
+	
+	<select id="queryMarketPlan2TicketUsed" resultMap="BaseResultMap">
+	     SELECT mpmi1.* FROM 
+			t_market_plan_main_info mpmi1 LEFT JOIN t_market_plan_shop_rel srel on  mpmi1.F_MARKET_ID=srel.F_MARKET_ID,
+			T_MARKET_PLAN_GRADE_REF tmp,
+			t_market_plan_goods_rel mpgr1,
+			(
+				SELECT C.F_TICKET_TYPE_ID,COUNT(C.F_TICKET_TYPE_ID) AS F_TICKET_TYPE_COUNT FROM t_shop_order_main_info A
+				LEFT JOIN t_shop_order_pay_main_info B ON A.F_ORDER_NUMBER = B.F_ORDER_NUM
+				LEFT JOIN t_shop_order_pay_sub_info  C ON B.F_PAY_NUM = C.F_PAY_NUM
+				WHERE A.F_ORDER_NUMBER  = #{fOrderNum} AND B.F_OPT_TYPE = 0
+				AND C.F_PAY_TYPE in (5,7,12)
+				GROUP BY C.F_TICKET_TYPE_ID 
+			) t1
+			WHERE
+			mpmi1.F_MARKET_TYPE_ID = '33' AND (srel.F_SHOP_CODE=#{shopCode} or mpmi1.F_SHOP_RULE='1') 
+			AND (tmp.F_GRADE_ID=(SELECT tci.F_CUS_GRADE_REL FROM t_cus_info tci where tci.F_CUS_CODE=#{cusCode}))
+			AND	mpgr1.F_GOODS_NUM = t1.F_TICKET_TYPE_ID
+			AND mpgr1.F_USE_TYPE = 4
+			AND mpmi1.F_STATE='1'
+			AND mpmi1.F_MARKET_ID = mpgr1.F_MARKET_ID
+			and ((ISNULL(mpmi1.F_EFFECT_DATE) and ISNULL(mpmi1.F_EXPIRE_DATE)) or 
+			(<![CDATA[  STR_TO_DATE(mpmi1.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+			<![CDATA[ AND STR_TO_DATE(mpmi1.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ]]>))
+			<!-- 限制参与人次 -->
+			<![CDATA[AND (mpmi1.F_NUMBEROFPEOPLE IS NULL OR mpmi1.F_NUMBEROFPEOPLE = '' OR CONVERT(mpmi1.F_NUMBEROFPEOPLE,SIGNED) > CONVERT(IFNULL(mpmi1.F_NUMBEROFPEOPLE_CURRENT,0),SIGNED)) ]]>
+			GROUP BY mpmi1.F_MARKET_ID
+		    HAVING
+			SUM(t1.F_TICKET_TYPE_COUNT) >= mpmi1.F_LOWEST_FEE
+	</select>
+	
+	<select id="queryAvailableMarketForCusDistributtonReward" resultMap="BaseResultMap">
+		SELECT mpmi1.* FROM T_CUS_RECOMMEND_REGISTER_LOG A 
+			LEFT JOIN 
+			T_MARKET_PLAN_MAIN_INFO mpmi1  ON 1=1,
+			T_MARKET_PLAN_GRADE_REF tmp,
+			T_CUS_DISTRIBUTION_MARKET_REL mr
+			WHERE A.F_SHARE_CUS_CODE = #{shareCusCode} AND A.F_SHARED_CUS_CODE = #{cusCode2Shared}
+			AND mpmi1.F_MARKET_TYPE_ID = 35 AND (tmp.F_GRADE_ID=(SELECT tci.F_CUS_GRADE_REL FROM t_cus_info tci where tci.F_CUS_CODE=#{shareCusCode}))
+			AND tmp.F_MARKET_ID = mpmi1.F_MARKET_ID
+			AND mpmi1.F_STATE='1'
+			AND ((
+				(mpmi1.F_EFFECT_DATE is null or mpmi1.F_EFFECT_DATE = '')
+				AND (mpmi1.F_EXPIRE_DATE is null or mpmi1.F_EXPIRE_DATE = '')
+			) or 
+			(<![CDATA[  STR_TO_DATE(mpmi1.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+			<![CDATA[ AND STR_TO_DATE(mpmi1.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ]]>))
+			and mr.F_MARKET_ID = mpmi1.F_MARKET_ID
+	</select>
+	
+  <select id="queryAvailableMarketForCusDistributtonRewardShared" resultMap="BaseResultMap">
+		SELECT mpmi1.* FROM T_CUS_RECOMMEND_REGISTER_LOG A 
+			LEFT JOIN 
+			T_MARKET_PLAN_MAIN_INFO mpmi1  ON 1=1,
+			T_MARKET_PLAN_GRADE_REF tmp,
+			T_CUS_DISTRIBUTION_MARKET_REL mr
+			WHERE A.F_SHARE_CUS_CODE = #{shareCusCode} AND A.F_SHARED_CUS_CODE = #{cusCode2Shared}
+			AND mpmi1.F_MARKET_TYPE_ID = 34 AND (tmp.F_GRADE_ID=(SELECT tci.F_CUS_GRADE_REL FROM t_cus_info tci where tci.F_CUS_CODE=#{cusCode2Shared}))
+			AND mpmi1.F_STATE='1'
+			AND tmp.F_MARKET_ID = mpmi1.F_MARKET_ID
+			AND ((
+					(mpmi1.F_EFFECT_DATE is null or mpmi1.F_EFFECT_DATE = '')
+					AND (mpmi1.F_EXPIRE_DATE is null or mpmi1.F_EXPIRE_DATE = '')
+				) or 
+			(<![CDATA[  STR_TO_DATE(mpmi1.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+			<![CDATA[ AND STR_TO_DATE(mpmi1.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ]]>))
+			and mr.F_SHARED_MARKET_ID = mpmi1.F_MARKET_ID
+	</select>
+	
+	<select id="queryAvailableMarketForCusDistributtonRewardConsumeShared" resultMap="BaseResultMap">
+		SELECT A.*,B.F_ORDER_MONEY AS F_GOODS_SUM_AMOUNT FROM T_MARKET_PLAN_MAIN_INFO A
+				LEFT JOIN T_SHOP_ORDER_MAIN_INFO B ON 1=1
+				LEFT JOIN T_CUS_INFO C ON 1=1,
+				T_MARKET_PLAN_GRADE_REF tmp
+				WHERE B.F_ORDER_NUMBER  = #{fOrderNum}
+				AND C.F_CUS_CODE = #{fCusNumberBeShared}
+				AND A.F_MARKET_TYPE_ID = 35 
+				AND (tmp.F_GRADE_ID=(SELECT tci.F_CUS_GRADE_REL FROM t_cus_info tci where tci.F_CUS_CODE=#{fCusNumOfShare}))
+				AND A.F_STATE='1'
+				AND tmp.F_MARKET_ID = A.F_MARKET_ID 
+				AND ((ISNULL(A.F_EFFECT_DATE) and ISNULL(A.F_EXPIRE_DATE)) or 
+				(<![CDATA[  STR_TO_DATE(A.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+				<![CDATA[ AND STR_TO_DATE(A.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ]]>))
+				AND DATE_FORMAT(DATE_ADD(C.F_CREATETIME, INTERVAL A.F_EXECUTE_TIME MONTH),'%Y%m%d') >=B.F_BUILD_TIME
+				AND B.F_ORDER_MONEY >= A.F_LOWEST_FEE
+	</select>
+	
+	<select id="queryShareCusNumBySharedCusNum" resultType="java.lang.String">
+			SELECT  F_SHARE_CUS_CODE
+			FROM T_CUS_RECOMMEND_REGISTER_LOG
+			WHERE F_SHARED_CUS_CODE = #{fCusNumber}
+	</select>
+		
+	<select id="queryAvailableMarketingForShopUserOfPosPercentage" resultMap="PosGoodsOfPercentage2ShopUserMap">
+	        SELECT * FROM (
+				     SELECT * FROM (
+				              SELECT A.F_ID,A.F_LOWEST_FEE,A.F_ASSISTANT,A.F_GOODS_NUM,A.F_GOODS_SUM,A.THISM,					
+											   A.F_IS_MULTIPLE,
+					                           A.F_STATISTICAL_TYPE,
+					                           A.F_PLAN_FULL_TYPE,A.F_GOODS_SUM_AMOUNT FROM (
+					                 SELECT A.F_ID,A.F_LOWEST_FEE,A.F_ASSISTANT,A.F_GOODS_NUM,A.F_GOODS_SUM,
+											 SUM(
+												CASE 
+												WHEN B.F_REWARD_TYPE = 1 
+												THEN 
+													CASE 
+													WHEN A.F_STATISTICAL_TYPE = 1
+													THEN B.F_REWARD_VALUE*floor(A.F_GOODS_SUM/F_LOWEST_FEE)
+													WHEN A.F_STATISTICAL_TYPE = 3
+													THEN (B.F_REWARD_VALUE/10000)*A.F_GOODS_SUM_AMOUNT        
+													END 
+												 ELSE 
+												 0
+												 END 
+											   ) AS THISM,					
+											   A.F_IS_MULTIPLE,
+					                           A.F_STATISTICAL_TYPE,
+					                           A.F_PLAN_FULL_TYPE,A.F_GOODS_SUM_AMOUNT FROM (
+													     SELECT mpmi1.F_ID,mpmi1.F_LOWEST_FEE,t1.F_ASSISTANT,SUM(t1.F_GOODS_SUM) AS F_GOODS_SUM,t1.F_GOODS_NUM,sum(t1.F_GOODS_SUM_AMOUNT) AS F_GOODS_SUM_AMOUNT,mpmi1.F_IS_MULTIPLE,mpmi1.F_STATISTICAL_TYPE,mpmi1.F_PLAN_FULL_TYPE
+															FROM t_shop_user_plan_main_info mpmi1 LEFT JOIN t_shop_user_plan_shop_rel srel on  mpmi1.F_ID=srel.F_USER_PLAN_ID,
+															(
+															           SELECT TK.F_GOODS_NUM,TK.F_GOODS_SUM,TK.F_ID,F_ORDER_NUM ,TK.F_ASSISTANT,F_GOODS_SUM_AMOUNT FROM 
+															           (
+															              SELECT sosi.F_GOODS_NUM,sosi.F_ASSISTANT,
+																						(CASE WHEN MPMI2.F_PLAN_FULL_TYPE = '1' 
+																						      THEN  (sosi.F_GOODS_COUNT - (if(sosi.F_PROMO_MONEY > 0,(sosi.F_PROMO_MONEY /sosi.F_GOODS_SUM_AMOUNT)*sosi.F_GOODS_COUNT ,0))) 
+															                                  WHEN MPMI2.F_PLAN_FULL_TYPE = '2' 
+															                                  THEN F_GOODS_SUM_AMOUNT
+																							END 
+																						 )
+																						 AS F_GOODS_SUM,
+																						MPMI2.F_ID,sosi.F_ORDER_NUM,sosi.F_GOODS_SUM_AMOUNT
+																						FROM
+																							t_shop_order_sub_info sosi,t_shop_user_plan_main_info MPMI2
+																						WHERE
+																						sosi.F_ORDER_NUM =  #{fOrderNum}
+																						AND sosi.F_GOODS_SUM_AMOUNT > 0 
+																						AND MPMI2.F_PLAN_TYPE ='16' and  sosi.F_STATE = '0'
+																				) TK 
+																				INNER JOIN 
+															                    ( 
+																						SELECT F_PLAN_ID,SUB.F_GOODS_NUM,SUB.F_ASSISTANT FROM t_shop_order_sub_info SUB,T_SHOP_USER_PLAN_GOODS_REL REL_YES 
+																						WHERE 
+																						SUB.F_ORDER_NUM = #{fOrderNum} AND SUB.F_GOODS_NUM = REL_YES.F_GOODS_NUM 
+																						AND REL_YES.F_PLAN_TYPE_ID = '16' AND REL_YES.F_USE_TYPE = '16'
+																						GROUP BY SUB.F_ASSISTANT,SUB.F_GOODS_NUM,REL_YES.F_PLAN_ID
+																				) TKK
+																				ON TK.F_ID = TKK.F_PLAN_ID AND TK.F_GOODS_NUM = TKK.F_GOODS_NUM AND TK.F_ASSISTANT = TKK.F_ASSISTANT
+																		        LEFT JOIN
+																		        ( 
+																		             SELECT REL_NOT.F_USER_PLAN_ID,SUB.F_GOODS_NUM,SUB.F_ASSISTANT FROM 
+																		             t_shop_order_sub_info SUB,
+																		             t_shop_user_plan_exception_rel REL_NOT 
+																					 WHERE SUB.F_ORDER_NUM = #{fOrderNum} AND SUB.F_GOODS_NUM = REL_NOT.F_GOODS_NUM 
+																					 GROUP BY SUB.F_ASSISTANT,SUB.F_GOODS_NUM,REL_NOT.F_USER_PLAN_ID
+																		         ) TKKK ON TK.F_ID = TKKK.F_USER_PLAN_ID AND TK.F_GOODS_NUM = TKKK.F_GOODS_NUM AND TK.F_ASSISTANT = TKKK.F_ASSISTANT
+																		         WHERE TKKK.F_USER_PLAN_ID IS NULL
+															) t1
+															WHERE  mpmi1.F_ID = t1.F_ID AND mpmi1.F_STATE='1'
+															AND mpmi1.F_PLAN_TYPE ='16'
+															AND (srel.F_SHOP_CODE=#{fShopId} or mpmi1.F_SHOP_RULE='1') 
+															and ((mpmi1.F_TIME_TYPE = 0) or 
+															(<![CDATA[STR_TO_DATE(mpmi1.F_BEGIN_TIME,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d']]>) 
+															AND <![CDATA[STR_TO_DATE(mpmi1.F_END_TIME,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d'))]]>)
+															GROUP BY
+															t1.F_ASSISTANT,t1.F_GOODS_NUM,t1.F_ID
+															HAVING
+															SUM(t1.F_GOODS_SUM) >= mpmi1.F_LOWEST_FEE
+													) A INNER JOIN 
+													t_shop_user_plan_sub_info B ON A.F_ID = B.F_ID
+													GROUP BY A.F_ASSISTANT,A.F_GOODS_NUM,A.F_ID
+													ORDER BY THISM DESC ) A
+												    GROUP BY A.F_ASSISTANT,A.F_GOODS_NUM
+				) t1 
+				UNION ALL
+				(
+					SELECT A.F_ID,A.F_LOWEST_FEE,A.F_ASSISTANT,A.F_GOODS_NUM,A.F_GOODS_SUM,A.THISM,					
+											   A.F_IS_MULTIPLE,
+					                           A.F_STATISTICAL_TYPE,
+					                           A.F_PLAN_FULL_TYPE,A.F_GOODS_SUM_AMOUNT FROM (
+							SELECT A.F_ID,A.F_LOWEST_FEE,A.F_ASSISTANT,A.F_GOODS_NUM,A.F_GOODS_SUM,					
+																SUM(
+																	CASE 
+																	WHEN B.F_REWARD_TYPE = 1 
+																	THEN 
+																		CASE 
+																		WHEN A.F_STATISTICAL_TYPE = 1
+																		THEN B.F_REWARD_VALUE*floor(A.F_GOODS_SUM/F_LOWEST_FEE)
+																		WHEN A.F_STATISTICAL_TYPE = 3
+																		THEN (B.F_REWARD_VALUE/10000)*A.F_GOODS_SUM_AMOUNT        
+																		END 
+																	ELSE 
+																	0
+																	END 
+																) AS THISM,					
+											   A.F_IS_MULTIPLE,
+					                           A.F_STATISTICAL_TYPE,
+					                           A.F_PLAN_FULL_TYPE,A.F_GOODS_SUM_AMOUNT  
+														FROM (
+													SELECT mpmi1.F_ID,mpmi1.F_LOWEST_FEE,t1.F_ASSISTANT,SUM(t1.F_GOODS_SUM) AS F_GOODS_SUM,t1.F_GOODS_NUM,sum(t1.F_GOODS_SUM_AMOUNT) AS F_GOODS_SUM_AMOUNT,mpmi1.F_IS_MULTIPLE,mpmi1.F_STATISTICAL_TYPE,mpmi1.F_PLAN_FULL_TYPE
+													FROM t_shop_user_plan_main_info mpmi1 LEFT JOIN t_shop_user_plan_shop_rel srel on  mpmi1.F_ID=srel.F_USER_PLAN_ID,
+													(
+													           SELECT TK.F_GOODS_BRAND,TK.F_GOODS_SUM,TK.F_ID,F_ORDER_NUM ,TK.F_ASSISTANT,F_GOODS_SUM_AMOUNT,TK.F_GOODS_NUM FROM 
+													           (
+													              SELECT
+														                        sosi.F_GOODS_NUM,
+																				sosi.F_GOODS_BRAND,
+																				sosi.F_ASSISTANT,
+																				(
+																					CASE WHEN MPMI2.F_PLAN_FULL_TYPE = '1' THEN 
+																					(sosi.F_GOODS_COUNT - (if(sosi.F_PROMO_MONEY > 0,(sosi.F_PROMO_MONEY /sosi.F_GOODS_SUM_AMOUNT)*sosi.F_GOODS_COUNT ,0))) 
+													                WHEN MPMI2.F_PLAN_FULL_TYPE = '2' THEN 
+													                 F_GOODS_SUM_AMOUNT
+																					END 
+																				)
+																				AS F_GOODS_SUM,
+																				MPMI2.F_ID,sosi.F_ORDER_NUM,sosi.F_GOODS_SUM_AMOUNT
+																				FROM
+																					t_shop_order_sub_info sosi,t_shop_user_plan_main_info MPMI2
+																				WHERE
+																				sosi.F_ORDER_NUM = #{fOrderNum}
+																				AND sosi.F_GOODS_SUM_AMOUNT > 0 
+																				AND MPMI2.F_PLAN_TYPE ='17' and  sosi.F_STATE = '0'
+																		) TK 
+																		INNER JOIN 
+													                    ( 
+																			SELECT F_PLAN_ID,SUB.F_GOODS_NUM,SUB.F_ASSISTANT FROM T_SHOP_ORDER_SUB_INFO SUB,T_SHOP_USER_PLAN_GOODS_REL REL_YES 
+																			WHERE 
+																			SUB.F_ORDER_NUM = #{fOrderNum} AND SUB.F_GOODS_BRAND = REL_YES.F_GOODS_NUM 
+																			AND REL_YES.F_PLAN_TYPE_ID = '17' AND REL_YES.F_USE_TYPE = '17'
+																			GROUP BY SUB.F_ASSISTANT,SUB.F_GOODS_NUM,REL_YES.F_PLAN_ID
+																		 ) TKK
+																		 ON TK.F_ID = TKK.F_PLAN_ID AND TK.F_GOODS_NUM = TKK.F_GOODS_NUM	AND TK.F_ASSISTANT = TKK.F_ASSISTANT
+																         LEFT JOIN
+																         ( 
+																            SELECT REL_NOT.F_USER_PLAN_ID,SUB.F_GOODS_NUM,SUB.F_ASSISTANT FROM t_shop_order_sub_info SUB,T_SHOP_USER_PLAN_EXCEPTION_REL REL_NOT 
+																			WHERE SUB.F_ORDER_NUM = #{fOrderNum} AND SUB.F_GOODS_NUM = REL_NOT.F_GOODS_NUM 
+																			GROUP BY SUB.F_ASSISTANT,SUB.F_GOODS_NUM,REL_NOT.F_USER_PLAN_ID
+																          ) TKKK ON TK.F_ID = TKKK.F_USER_PLAN_ID AND TK.F_GOODS_NUM = TKKK.F_GOODS_NUM AND TK.F_ASSISTANT = TKKK.F_ASSISTANT
+																          WHERE TKKK.F_USER_PLAN_ID IS NULL
+													) t1 WHERE  mpmi1.F_ID = t1.F_ID AND mpmi1.F_STATE='1'
+													AND (srel.F_SHOP_CODE=#{fShopId} or mpmi1.F_SHOP_RULE='1') 
+													and ((mpmi1.F_TIME_TYPE = 0) or 
+													(<![CDATA[STR_TO_DATE(mpmi1.F_BEGIN_TIME,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+													AND <![CDATA[STR_TO_DATE(mpmi1.F_END_TIME,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d')))]]>
+													GROUP BY
+													t1.F_ASSISTANT,t1.F_GOODS_NUM,t1.F_ID
+													HAVING
+													SUM(t1.F_GOODS_SUM) >= mpmi1.F_LOWEST_FEE
+													) A INNER JOIN 
+													t_shop_user_plan_sub_info B ON A.F_ID = B.F_ID
+													GROUP BY A.F_ASSISTANT,A.F_GOODS_NUM,A.F_ID
+													ORDER BY THISM DESC ) A
+													GROUP BY A.F_ASSISTANT,A.F_GOODS_NUM
+				)
+				UNION ALL
+				(
+						SELECT A.F_ID,A.F_LOWEST_FEE,A.F_ASSISTANT,A.F_GOODS_NUM,A.F_GOODS_SUM,A.THISM,					
+								A.F_IS_MULTIPLE,A.F_STATISTICAL_TYPE, A.F_PLAN_FULL_TYPE,A.F_GOODS_SUM_AMOUNT FROM (
+							          SELECT A.F_ID,A.F_LOWEST_FEE,A.F_ASSISTANT,A.F_GOODS_NUM,A.F_GOODS_SUM,				    
+																SUM(
+																	CASE 
+																	WHEN B.F_REWARD_TYPE = 1 
+																	THEN 
+																		CASE 
+																		WHEN A.F_STATISTICAL_TYPE = 1
+																		THEN B.F_REWARD_VALUE*floor(A.F_GOODS_SUM/F_LOWEST_FEE)
+																		WHEN A.F_STATISTICAL_TYPE = 3
+																		THEN (B.F_REWARD_VALUE/10000)*A.F_GOODS_SUM_AMOUNT      
+																		END 
+																	ELSE 
+																	0
+																	END 
+																) AS THISM,					
+															   A.F_IS_MULTIPLE,
+									                           A.F_STATISTICAL_TYPE,
+									                           A.F_PLAN_FULL_TYPE,A.F_GOODS_SUM_AMOUNT        
+					                                FROM (
+													SELECT mpmi1.F_ID,mpmi1.F_LOWEST_FEE,t1.F_ASSISTANT,SUM(t1.F_GOODS_SUM) AS F_GOODS_SUM,t1.F_GOODS_NUM,sum(t1.F_GOODS_SUM_AMOUNT) AS F_GOODS_SUM_AMOUNT,mpmi1.F_IS_MULTIPLE,mpmi1.F_STATISTICAL_TYPE,mpmi1.F_PLAN_FULL_TYPE
+													FROM t_shop_user_plan_main_info mpmi1 LEFT JOIN t_shop_user_plan_shop_rel srel on  mpmi1.F_ID=srel.F_USER_PLAN_ID,
+													(
+													           SELECT TK.F_GOODS_CLS,TK.F_GOODS_SUM,TK.F_ID,F_ORDER_NUM ,TK.F_ASSISTANT,F_GOODS_SUM_AMOUNT,TK.F_GOODS_NUM FROM 
+													           (
+													              SELECT sosi.F_GOODS_NUM,sosi.F_GOODS_CLS,sosi.F_ASSISTANT,
+																				(
+																					CASE WHEN MPMI2.F_PLAN_FULL_TYPE = '1' THEN 
+																					(sosi.F_GOODS_COUNT - (if(sosi.F_PROMO_MONEY > 0,(sosi.F_PROMO_MONEY /sosi.F_GOODS_SUM_AMOUNT)*sosi.F_GOODS_COUNT ,0))) 
+													                                 WHEN MPMI2.F_PLAN_FULL_TYPE = '2' THEN 
+													                                 F_GOODS_SUM_AMOUNT
+																					END 
+																				)AS F_GOODS_SUM,MPMI2.F_ID,sosi.F_ORDER_NUM,sosi.F_GOODS_SUM_AMOUNT
+																				FROM
+																				T_SHOP_ORDER_SUB_INFO sosi,T_SHOP_USER_PLAN_MAIN_INFO MPMI2
+																				WHERE
+																				sosi.F_ORDER_NUM = #{fOrderNum}
+																				AND sosi.F_GOODS_SUM_AMOUNT > 0 
+																				AND MPMI2.F_PLAN_TYPE ='18' and  sosi.F_STATE = '0'
+															  ) TK 
+															  INNER JOIN 
+											                    ( 
+																	SELECT F_PLAN_ID,SUB.F_GOODS_NUM,SUB.F_ASSISTANT FROM T_SHOP_ORDER_SUB_INFO SUB,T_SHOP_USER_PLAN_GOODS_REL REL_YES 
+																	WHERE 
+																	SUB.F_ORDER_NUM = #{fOrderNum} AND LEFT(SUB.F_GOODS_CLS,CHAR_LENGTH(REL_YES.F_GOODS_NUM)) = REL_YES.F_GOODS_NUM
+																	AND REL_YES.F_PLAN_TYPE_ID = '18' AND REL_YES.F_USE_TYPE = '18'
+																	GROUP BY SUB.F_ASSISTANT,SUB.F_GOODS_NUM,REL_YES.F_PLAN_ID
+																 ) TKK
+																 ON TK.F_ID = TKK.F_PLAN_ID AND TK.F_GOODS_NUM = TKK.F_GOODS_NUM	AND TK.F_ASSISTANT = TKK.F_ASSISTANT
+													          LEFT JOIN
+													          ( 
+													            SELECT REL_NOT.F_USER_PLAN_ID,SUB.F_GOODS_NUM,SUB.F_ASSISTANT FROM T_SHOP_ORDER_SUB_INFO SUB,
+												                   T_SHOP_USER_PLAN_EXCEPTION_REL REL_NOT 
+																   WHERE SUB.F_ORDER_NUM = #{fOrderNum} AND SUB.F_GOODS_NUM = REL_NOT.F_GOODS_NUM 
+																   GROUP BY SUB.F_ASSISTANT,SUB.F_GOODS_NUM,REL_NOT.F_USER_PLAN_ID
+													           ) TKKK ON TK.F_ID = TKKK.F_USER_PLAN_ID AND TK.F_GOODS_NUM = TKKK.F_GOODS_NUM AND TK.F_ASSISTANT = TKKK.F_ASSISTANT
+													           WHERE TKKK.F_USER_PLAN_ID IS NULL
+													) t1 WHERE  mpmi1.F_ID = t1.F_ID AND mpmi1.F_STATE='1'
+													AND (srel.F_SHOP_CODE=#{fShopId} or mpmi1.F_SHOP_RULE='1') 
+													and ((mpmi1.F_TIME_TYPE = 0) or 
+													(<![CDATA[STR_TO_DATE(mpmi1.F_BEGIN_TIME,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d') ]]>
+													AND<![CDATA[ STR_TO_DATE(mpmi1.F_END_TIME,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d')))]]>
+													GROUP BY
+													t1.F_ASSISTANT,t1.F_GOODS_NUM,t1.F_ID
+													HAVING
+													SUM(t1.F_GOODS_SUM) >= mpmi1.F_LOWEST_FEE
+													) A INNER JOIN 
+													t_shop_user_plan_sub_info B ON A.F_ID = B.F_ID
+													GROUP BY A.F_ASSISTANT,A.F_GOODS_NUM,A.F_ID
+													ORDER BY THISM DESC ) A
+													GROUP BY A.F_ASSISTANT,A.F_GOODS_NUM
+				)
+		) 
+		A GROUP BY A.F_ASSISTANT,A.F_GOODS_NUM
+	</select>
+	
+	<!-- 查询导购满足的套餐购买营销 -->
+	<select id="queryAvailableMarketingForShopUserOfPackageShare" resultMap="PackageShareMarketingInfo2ShopUserMap">
+	SELECT F_MARKET_ID, F_USER_PLAN_ID, F_GOODS_NUM, F_LOWEST_FEE, F_GOODS_COUNT, F_NEW_REWARD_VALUE F_REWARD_VALUE, 
+		F_ASSISTANT, F_REWARD_TYPE,  F_USER_PER
+	FROM
+	(		SELECT mpmi.F_MARKET_ID, mpmi.F_MARKET_NAME, supm.F_USER_PLAN_ID, t1.F_GOODS_NUM, mpmi.F_LOWEST_FEE, F_GOODS_COUNT, FLOOR(F_GOODS_COUNT/mpmi.F_LOWEST_FEE)* sups.F_REWARD_VALUE F_NEW_REWARD_VALUE, 
+					t1.F_ASSISTANT, supmi.F_REWARD_TYPE, sups.F_USER_PER
+				FROM 
+					t_market_plan_main_info mpmi,
+					t_market_plan_package_program_rel mpp,
+					(
+						SELECT F_GOODS_NUM, F_ASSISTANT, SUM(CASE WHEN F_STATE = '0' THEN F_GOODS_COUNT ELSE -F_GOODS_COUNT END) F_GOODS_COUNT 
+						FROM t_order_sub_info 
+						WHERE F_ORDER_NUM = #{fOrderNum}
+						GROUP BY F_GOODS_NUM, F_ASSISTANT 
+					) t1,
+					t_shop_user_plan_market_rel supm,
+					t_shop_user_plan_sub_info sups,
+					t_shop_user_plan_main_info supmi
+					LEFT JOIN t_shop_user_plan_shop_rel supsr on supmi.F_ID = supsr.F_USER_PLAN_ID
+					WHERE
+					mpmi.F_MARKET_TYPE_ID = '28'
+					AND mpmi.F_STATE='1'
+					AND mpp.F_PRODUCT_NUM = t1.F_GOODS_NUM
+					AND mpmi.F_MARKET_ID = mpp.F_MARKET_ID
+					AND supm.F_USER_PLAN_ID = sups.F_ID
+					AND sups.F_ID = supmi.F_ID
+					AND (supsr.F_SHOP_CODE= #{fShopId} or supmi.F_SHOP_RULE='1') 
+					AND <![CDATA[mpmi.F_LOWEST_FEE <= t1.F_GOODS_COUNT]]>
+					AND ((ISNULL(mpmi.F_EFFECT_DATE) and ISNULL(mpmi.F_EXPIRE_DATE)) or 
+					(<![CDATA[STR_TO_DATE(mpmi.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d')]]> 
+					 AND <![CDATA[STR_TO_DATE(mpmi.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ))]]>
+					 AND (supmi.F_TIME_TYPE = 0 OR 
+					  (<![CDATA[  STR_TO_DATE(supmi.F_BEGIN_TIME,'%Y%m%d' ) <= DATE_FORMAT(CURDATE(), '%Y%m%d') ]]>
+					  <![CDATA[ AND STR_TO_DATE(supmi.F_END_TIME,'%Y%m%d' ) >= DATE_FORMAT(CURDATE(), '%Y%m%d') ]]>))
+					AND mpmi.F_MARKET_ID = supm.F_MARKET_PLAN_ID ORDER BY F_NEW_REWARD_VALUE DESC
+	) t GROUP BY t.F_GOODS_NUM
+  </select>
+  
+  <select id="queryMarketPlan2PackagePurchase" resultMap="BaseResultMap">
+		  SELECT MPMI.*,t1.F_GOODS_COUNT FROM T_MARKET_PLAN_MAIN_INFO MPMI 			
+		  <if test="fShopId != null">
+				LEFT JOIN t_market_plan_shop_rel t3 ON mpmi.F_MARKET_ID = t3.F_MARKET_ID
+			</if>,
+			t_market_plan_package_program_rel mpp,
+			(
+                SELECT F_GOODS_NUM, SUM(CASE WHEN F_STATE = '0' THEN F_GOODS_COUNT ELSE -F_GOODS_COUNT END) F_GOODS_COUNT 
+				FROM t_order_sub_info 
+				WHERE F_ORDER_NUM = #{fOrderNum}
+				GROUP BY F_GOODS_NUM
+			) T1
+			<if test="fIsOnlineOrder ==	1">
+			   ,T_MALL_GOODS_SHELF_MANAGE C
+			</if>
+			WHERE
+			mpmi.F_MARKET_TYPE_ID = '39'
+			AND mpmi.F_STATE='1'
+			<if test="fIsOnlineOrder ==	1">
+			    AND T1.F_GOODS_NUM = C.F_SHELF_NUM
+				AND mpp.F_PRODUCT_NUM = C.F_GOODS_NUM
+			</if>
+			<if test="fIsOnlineOrder ==	0">
+				AND mpp.F_PRODUCT_NUM =T1.F_GOODS_NUM
+			</if>
+			AND mpmi.F_MARKET_ID = mpp.F_MARKET_ID
+			<if test="fShopId != null">
+			AND (t3.F_SHOP_CODE= #{fShopId} or MPMI.F_SHOP_RULE='1') 
+			</if>
+			AND <![CDATA[mpmi.F_LOWEST_FEE <= t1.F_GOODS_COUNT]]>
+			AND ((ISNULL(mpmi.F_EFFECT_DATE) and ISNULL(mpmi.F_EXPIRE_DATE)) OR
+			(<![CDATA[STR_TO_DATE(mpmi.F_EFFECT_DATE,'%Y%m%d' ) <= DATE_FORMAT(curdate(), '%Y%m%d')]]> 
+			AND <![CDATA[STR_TO_DATE(mpmi.F_EXPIRE_DATE,'%Y%m%d' ) >= DATE_FORMAT(curdate(), '%Y%m%d') ))]]>
+  </select>
+  
+  <!--群组发微信模板需要的参数  -->
+      <select id="getTeamActivityManageInfoBeanById" resultMap="BaseResultMap">
+		SELECT 
+			T1.*,T3.F_FILTER_CONDITION_ID AS F_CONDITION_ID, T3.F_FILTER_CONDITION_NAME AS F_CONDITION_NAME,T2.F_TYPE AS F_TYPE
+		FROM 
+			T_MARKET_PLAN_MAIN_INFO T1
+			LEFT JOIN T_MARKET_CONDITION_REL T2 ON T1.F_MARKET_ID=T2.F_MARKET_ID 
+ 			LEFT JOIN T_FILTER_CONDITION T3 ON T2.F_CONDITION_ID=T3.F_FILTER_CONDITION_ID
+		WHERE 
+			 T1.F_MARKET_ID=#{fMarketId}
+	</select>
+	
+	<!-- 获取已启动的营业员一购奖励方案信息 -->
+  <select id="getShopUserFirstOrderPlanInfo" resultMap="BaseResult2ShopUserMap">
+  		SELECT
+			F_ID, F_NAME, 
+			F_PLAN_TYPE, 
+			F_EFFECTIVE_TYPE, 
+			F_TIME_TYPE, 
+			F_BEGIN_TIME, 
+			F_END_TIME, 
+			F_SHOP_RULE, 
+			F_STATE, 
+			F_REMARK,
+			F_STATISTICAL_TYPE
+		FROM
+			t_shop_user_plan_main_info t
+		WHERE
+			t.F_PLAN_TYPE = '12'
+		AND 
+			F_STATE = '1'
+  </select>
+  
+  <!-- 校验当前的的会员是不是一购 -->
+  <select id="ifFirstOrder" resultType="java.lang.Integer">
+  		SELECT
+			count(*)
+		FROM 
+		
+			t_shop_order_main_info tt
+		WHERE
+			tt.F_BUILD_MEMBER_CODE = #{fCusNumber}
+  </select>
+  
+  <select id="queryFisrtShopOrderNumByCusCode" parameterType="Map" resultType="java.lang.String">
+		SELECT
+			f_order_number
+		FROM 
+			t_shop_order_main_info tt
+		WHERE
+			tt.F_BUILD_MEMBER_CODE = #{fCusNumber}
+		order by f_build_time asc
+			
+	</select>
+  
+  <select resultMap="BaseMemberResultMap" id="queryMemberInfoByCusId" parameterType="Map">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			T_CUS_INFO T1
+		WHERE
+			F_CUS_CODE = #{fCusCode}
+	</select>
+	
+	<select id="queryOrderMoneyById" resultType="java.lang.String">
+		SELECT
+		(
+			SELECT
+				sum(F_GOODS_SUM_AMOUNT)
+			FROM
+				T_SHOP_ORDER_SUB_INFO A
+			LEFT JOIN T_SHOP_ORDER_MAIN_INFO B ON A.F_ORDER_NUM = B.F_ORDER_NUMBER
+			WHERE
+				b.F_ORDER_NUMBER = #{fOrderNum}
+			AND A.F_STATE = '0'
+		) - (
+			SELECT
+				IFNULL(sum(F_GOODS_SUM_AMOUNT), 0)
+			FROM
+				T_SHOP_ORDER_SUB_INFO A
+			LEFT JOIN T_SHOP_ORDER_MAIN_INFO B ON A.F_ORDER_NUM = B.F_ORDER_NUMBER
+			WHERE
+				b.F_ORDER_NUMBER = #{fOrderNum}
+			AND A.F_STATE = '1'
+		)
+	</select>
+	<select id="getUserCode" resultType="java.lang.String">
+		select F_USER_CODE from t_cus_sales_rel tt where tt.F_CUS_CODE = #{fCusCode}
+	</select>
+	
+	<select id="getShopCode" resultType="java.lang.String">
+		select F_USER_SHOP_REL from T_SHOP_USER_INFO tt where tt.F_USER_CODE = #{fCusCode}
+	</select>
+	
+</mapper>
